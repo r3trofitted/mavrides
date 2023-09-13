@@ -4,4 +4,6 @@ class Player < ApplicationRecord
   encrypts :email, deterministic: true, downcase: true
 
   validates_presence_of :name, :email
+
+  scope :participating_in, ->(game) { joins(:characters).merge Character.participating_in(game) }
 end
