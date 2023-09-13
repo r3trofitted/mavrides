@@ -1,3 +1,3 @@
 class ApplicationMailbox < ActionMailbox::Base
-  routing /@mavrides.example/i => :messages
+  routing MessagesMailbox::MATCHER => :messages
 end
