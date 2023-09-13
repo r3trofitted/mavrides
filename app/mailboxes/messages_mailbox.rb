@@ -1,25 +1,31 @@
 class MessagesMailbox < ApplicationMailbox
   MATCHER = /^([\-\w]+)@mavrides.example/i
 
-  attr_reader :game
+  attr_reader :game, :sender
 
-  before_processing :set_game
-  before_processing :bounced!, if: -> { game.blank? || wrong_sender? }
+  before_processing :set_game_and_sender
+  before_processing :bounced!, if: -> { game.blank? || sender.blank? }
 
   def process
-    sender    = Player.where(email: mail.from).participating_in(game)
-    content   = mail.body.to_s
+    content = mail.body.to_s
 
     if message = game.messages.create(sender:, content:, subject: mail.subject)
       MessagesMailer.with(message:).transmission.deliver_later
     end
   end
 
-  def set_game
-    @game ||= Game.running.find_by(id: mail.to.grep(MATCHER) { $1 })
-  end
+  private
 
-  def wrong_sender?
-    Player.where(email: mail.from).participating_in(game).none?
+  def set_game_and_sender
+    @game   = Game.running.find_by(id: mail.to.grep(MATCHER) { $1 })
+    unless @game.blank?
+      # We don't really care if there is not sender (the mail will bounce), but do want to raise
+      # if there is more than one possible sender.
+      @sender = begin
+                  Player.where(email: mail.from).participating_in(@game).sole
+                rescue ActiveRecord::RecordNotFound
+                  nil
+                end
+    end
   end
 end
