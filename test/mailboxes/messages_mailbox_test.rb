@@ -3,6 +3,8 @@ require "test_helper"
 class MessagesMailboxTest < ActionMailbox::TestCase
   include ActionMailer::TestHelper
   
+  fixtures :games, :players
+  
   setup do
     ActionMailer::Base.deliveries.clear
     
