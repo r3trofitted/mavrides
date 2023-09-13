@@ -1,12 +1,15 @@
 class MessagesMailbox < ApplicationMailbox
   MATCHER = /^([\-\w]+)@mavrides.example/i
   
-  before_processing :bounced!, if: -> { game.blank? or wrong_sender? }
+  attr_reader :game
+  
+  before_processing :set_game
+  before_processing :bounced!, if: -> { game.blank? || wrong_sender? }
   
   def process
   end
   
-  def game
+  def set_game
     @game ||= Game.find_by(id: mail.to.grep(MATCHER) { $1 })
   end
   
