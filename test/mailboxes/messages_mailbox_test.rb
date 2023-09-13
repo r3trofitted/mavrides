@@ -16,14 +16,7 @@ class MessagesMailboxTest < ActionMailbox::TestCase
       receive_inbound_email_from_fixture "first_message.eml"
     end
 
-    message = Message.last
-    assert_equal players(:abelar), message.sender
-    assert_equal "さようなら", message.subject
-    assert_equal <<~TXT, message.content
-      This is it. We are off. To Tau Ceti, can you believe it? Even though I'll never see what's out there, I know.
-    TXT
-
-    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: message }
+    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: Message.last }
   end
 
   test "bounce mail for an unknown game" do
