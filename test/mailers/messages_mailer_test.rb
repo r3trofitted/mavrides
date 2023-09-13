@@ -1,8 +1,6 @@
 require "test_helper"
 
 class MessagesMailerTest < ActionMailer::TestCase
-  fixtures :all
-
   test "transmission" do
     mail = MessagesMailer.with(message: messages(:first_message)).transmission
 

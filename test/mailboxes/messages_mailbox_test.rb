@@ -3,8 +3,6 @@ require "test_helper"
 class MessagesMailboxTest < ActionMailbox::TestCase
   include ActionMailer::TestHelper
 
-  fixtures :games, :players, :characters
-
   setup do
     ActionMailer::Base.deliveries.clear
   end
@@ -13,7 +11,7 @@ class MessagesMailboxTest < ActionMailbox::TestCase
     game = games(:running_game)
 
     assert_difference -> { game.messages.count } do
-      receive_inbound_email_from_fixture "first_message.eml"
+      receive_inbound_email_from_fixture "second_message.eml"
     end
 
     assert_enqueued_email_with MessagesMailer, :transmission, params: { message: Message.last }
