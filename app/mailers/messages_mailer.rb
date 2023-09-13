@@ -1,5 +1,17 @@
 class MessagesMailer < ApplicationMailer
+  before_action :set_message
+
   def transmission
-    # TODO
+    mail(
+      subject: @message.subject,
+      from: @message.sender_email,
+      to: @message.recipient_email
+    )
+  end
+  
+  private
+  
+  def set_message
+    @message = params[:message]
   end
 end
