@@ -18,4 +18,23 @@ class RoundTest < ActiveSupport::TestCase
     refute_nil new_round.earther_hand
     refute_nil new_round.explorer_hand
   end
+  
+  test "#fill_hand adds 2 cards of the current event's type to the designated hand" do
+    skip "TODO: serialisation/deserialisation of hands and events for Rounds"
+    
+    round = Round.new(game: games(:abelar_and_philip)) do |r|
+      r.earther_event  = Card.new(value: 1, suit: :clubs)
+      r.explorer_event = Card.new(value: :ace, suit: :spades)
+      
+      # pretending that the hands are empty to make the assertions simpler
+      r.earther_hand  = []
+      r.explorer_hand = []
+    end
+    
+    round.fill_hand(:earther)
+    assert_equal 2, round.earther_hand.count { |c| c.suit == :clubs }
+    
+    round.fill_hand(:explorer)
+    assert_equal 2, round.explorer_hand.count { |c| c.suit == :spades }
+  end
 end
