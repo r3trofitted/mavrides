@@ -16,11 +16,10 @@ class CardTest < ActiveSupport::TestCase
     assert_equal "8♣️", Card.new(value: 8, suit: :clubs).to_short_s
   end
   
-  test "providing a new hand" do
-    hand = Card.new_hand
-    
-    assert_equal 4, hand.count
-    assert_equal 4, hand.map(&:suit).uniq.count # 1 card of each suit
+  test "#one_of_each_suit" do
+    cards = Card.one_of_each_suit
+
+    assert_equal 4, cards.map(&:suit).uniq.count
   end
   
   test "comparing cards with different suits" do
