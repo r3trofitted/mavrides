@@ -7,4 +7,17 @@ class Round < ApplicationRecord
       self.explorer_hand ||= Card.new_hand
     end
   end
+
+  def next
+    Round.new(
+      game: game,
+      number: number + 1,
+      earther_hand: fill_hand(:earther),
+      explorer_hand: fill_hand(:explorer)
+    )
+  end
+
+  def fill_hand(kind)
+    Card.new_hand # SLIME
+  end
 end
