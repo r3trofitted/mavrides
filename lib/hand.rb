@@ -3,7 +3,7 @@ class Hand
   
   SEPARATOR = ","
   
-  delegate :each, :empty?, to: :@cards
+  delegate_missing_to :@cards
   
   def self.load(payload)
     if payload.present?

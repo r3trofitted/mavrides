@@ -36,6 +36,9 @@ class Round < ApplicationRecord
   end
   
   def fill_hand(kind)
-    Card.new_hand # SLIME
+    event = public_send :"#{kind}_event"
+    hand  = public_send :"#{kind}_hand"
+    
+    hand.concat Card::VALUES.sample(2).map { |v| Card.new value: v, suit: event.suit }
   end
 end

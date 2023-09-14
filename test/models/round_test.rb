@@ -20,8 +20,6 @@ class RoundTest < ActiveSupport::TestCase
   end
   
   test "#fill_hand adds 2 cards of the current event's type to the designated hand" do
-    skip "TODO: serialisation/deserialisation of hands and events for Rounds"
-    
     round = Round.new(game: games(:abelar_and_philip)) do |r|
       r.earther_event  = Card.new(value: 1, suit: :clubs)
       r.explorer_event = Card.new(value: :ace, suit: :spades)
