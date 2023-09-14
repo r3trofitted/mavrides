@@ -2,6 +2,7 @@ class Game < ApplicationRecord
   belongs_to :earther, class_name: "Player"
   belongs_to :explorer, class_name: "Player"
   
+  has_many :rounds, -> { order(number: :asc) }
   has_many :messages
   
   def players
