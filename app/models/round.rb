@@ -2,12 +2,28 @@ class Round < ApplicationRecord
   belongs_to :game
   
   serialize :earther_event, coder: Card
+  serialize :explorer_event, coder: Card
+  
+  serialize :earther_hand, coder: Hand, type: Hand
+  serialize :explorer_hand, coder: Hand, type: Hand
   
   after_initialize do
     if number == 1
-      self.earther_hand ||= Card.new_hand
-      self.explorer_hand ||= Card.new_hand
+      self.earther_hand  = Card.one_of_each_suit if earther_hand.empty?
+      self.explorer_hand = Card.one_of_each_suit if explorer_hand.empty?
     end
+  end
+  
+  def earther_hand=(value)
+    value = Hand.new(*value) if value.kind_of? Array
+    
+    super(value)
+  end
+  
+  def explorer_hand=(value)
+    value = Hand.new(*value) if value.kind_of? Array
+    
+    super(value)
   end
   
   def next

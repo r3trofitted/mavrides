@@ -26,7 +26,7 @@ class RoundTest < ActiveSupport::TestCase
       r.earther_event  = Card.new(value: 1, suit: :clubs)
       r.explorer_event = Card.new(value: :ace, suit: :spades)
       
-      # pretending that the hands are empty to make the assertions simpler
+      # ensuring that the hands are empty to make the assertions simpler
       r.earther_hand  = []
       r.explorer_hand = []
     end
@@ -43,6 +43,15 @@ class RoundTest < ActiveSupport::TestCase
     round = Round.new game: games(:abelar_and_philip), number: 3, earther_event: event
     
     assert_kind_of Card, round.earther_event
+    assert round.save
+  end
+  
+  test "serializing hands" do
+    hand  = [Card.new(value: :ace, suit: :spades), Card.new(value: :king, suit: :clubs)]
+    round = Round.new game: games(:abelar_and_philip), number: 3, explorer_hand: hand
+    
+    assert_includes round.explorer_hand, Card.new(value: :ace, suit: :spades)
+    assert_includes round.explorer_hand, Card.new(value: :king, suit: :clubs)
     assert round.save
   end
 end
