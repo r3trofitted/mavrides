@@ -1,26 +1,13 @@
-class Card
-  SUITS = [
-    CLUBS    = "♣️",
-    DIAMONDS = "♦️",
-    HEARTS   = "♥️",
-    SPADES   = "♠️"
-  ]
-  
-  VALUES = [
-    ONE  = "1", TWO = "2",  THREE = "3", FOUR  = "4",
-    FIVE = "5", SIX = "6",  SEVEN = "7", EIGHT = "8",
-    NINE = "9", TEN = "10", JACK  = "J", QUEEN = "Q",
-    KING = "K", ACE = "A"
-  ]
+Card = Data.define(:value, :suit) do
+  self::SUITS  = %i[clubs diamonds hearts spades]
+  self::VALUES = %i[1 2 3 4 5 6 7 8 9 jack queen king ace]
   
   def initialize(value:, suit:)
-    value = Card.const_get(value.upcase) if value.is_a? Symbol
-    suit  = Card.const_get(suit.upcase) if suit.is_a? Symbol
-    
-    @value, @suit = value.to_s, suit
+    @value = value.to_s.to_sym.presence_in(Card::VALUES) or raise ArgumentError
+    @suit  = suit.to_sym.presence_in(Card::SUITS) or raise ArgumentError
   end
   
   def to_short_s
-    @value << @suit
+    @value[0].upcase << { spades: "♠️", clubs: "♣️", hearts: "♥️", diamonds: "♦️" }.fetch(@suit)
   end
 end
