@@ -25,6 +25,6 @@ class Game < ApplicationRecord
   validates_presence_of :earther, :explorer
 
   def update_rounds(message)
-    rounds.next! if message.sender == explorer_player
+    rounds.next! if message.sent_by? explorer_player
   end
 end
