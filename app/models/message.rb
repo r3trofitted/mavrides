@@ -6,6 +6,14 @@ class Message < ApplicationRecord
   delegate :email, to: :recipient, prefix: true
 
   def recipient
-    sender == game.explorer_player ? game.earther_player : game.explorer_player
+    if sent_by? game.explorer_player
+      game.earther_player
+    else
+      game.explorer_player
+    end
+  end
+
+  def sent_by?(player)
+    sender == player
   end
 end
