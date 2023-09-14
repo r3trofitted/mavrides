@@ -13,10 +13,6 @@ class Game < ApplicationRecord
     def current
       last
     end
-
-    def next!
-      create!(number: current&.number.to_i + 1)
-    end
   end
   has_many :messages, after_add: :update_rounds
 
@@ -25,6 +21,12 @@ class Game < ApplicationRecord
   validates_presence_of :earther, :explorer
 
   def update_rounds(message)
-    rounds.next! if message.sent_by? explorer_player
+    if message.sent_by? explorer_player
+      if rounds.any?
+        rounds.current.next.save!
+      else
+        rounds.create! number: 1
+      end
+    end
   end
 end
