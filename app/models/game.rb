@@ -18,6 +18,6 @@ class Game < ApplicationRecord
   end
   
   def update_rounds(message)
-    rounds.next! if message.sender == explorer
+    rounds.next! if message.sent_by?(explorer)
   end
 end

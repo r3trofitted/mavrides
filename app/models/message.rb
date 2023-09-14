@@ -5,7 +5,11 @@ class Message < ApplicationRecord
   delegate :email, to: :sender, prefix: true
   delegate :email, to: :recipient, prefix: true
   
+  def sent_by?(player)
+    sender == player
+  end
+  
   def recipient
-    sender == game.explorer ? game.earther : game.explorer
+    sent_by?(game.explorer) ? game.earther : game.explorer
   end
 end
