@@ -23,7 +23,7 @@ class Card
       card.to_short_s
     end
 
-    def new_hand
+    def one_of_each_suit
       SUITS.map { |s| new(value: VALUES.sample, suit: s) }
     end
   end
