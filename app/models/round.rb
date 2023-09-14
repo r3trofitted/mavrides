@@ -1,6 +1,8 @@
 class Round < ApplicationRecord
   belongs_to :game
 
+  serialize :earther_event, coder: Card
+
   after_initialize do
     if number == 1
       self.earther_hand ||= Card.new_hand

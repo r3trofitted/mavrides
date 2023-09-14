@@ -37,4 +37,12 @@ class RoundTest < ActiveSupport::TestCase
     round.fill_hand(:explorer)
     assert_equal 2, round.explorer_hand.count { |c| c.suit == :spades }
   end
+
+  test "serializing events" do
+    event = Card.new value: :ace, suit: :spades
+    round = Round.new game: games(:running_game), number: 3, earther_event: event
+
+    assert_kind_of Card, round.earther_event
+    assert round.save
+  end
 end
