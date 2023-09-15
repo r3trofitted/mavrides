@@ -36,7 +36,7 @@ class GameTest < ActiveSupport::TestCase
     game.starts!
     
     assert_difference ->{ game.rounds.count } do
-      game.messages << Message.new(sender: game.earther)
+      game.messages << Message.new(sender: game.earther, subject: "👋", content: "❤️")
     end
   end
   
@@ -45,7 +45,7 @@ class GameTest < ActiveSupport::TestCase
     game.starts!
     
     assert_no_difference ->{ game.rounds.count } do
-      game.messages << Message.new(sender: game.explorer)
+      game.messages << Message.new(sender: game.explorer, subject: "🖖", content: "💙")
     end
   end
 end

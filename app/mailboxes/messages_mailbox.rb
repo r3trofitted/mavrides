@@ -10,7 +10,12 @@ class MessagesMailbox < ApplicationMailbox
     content = mail.body.to_s
     
     message = Message.new(sender:, content:, subject: mail.subject)
-    game.messages << message or bounce_now_with(MessagesMailer.with(message:).bounced)
+    
+    begin
+      game.messages << message
+    rescue UncaughtThrowError
+      bounce_now_with MessagesMailer.with(message:).bounced
+    end
   end
   
   private
