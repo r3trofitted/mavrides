@@ -2,6 +2,8 @@ class Message < ApplicationRecord
   belongs_to :game
   belongs_to :sender, class_name: "Player"
 
+  validates_presence_of :subject, :content
+
   delegate :email, to: :sender, prefix: true
   delegate :email, to: :recipient, prefix: true
 
