@@ -9,6 +9,10 @@ class MessagesMailer < ApplicationMailer
     )
   end
 
+  # TODO
+  def bounced
+  end
+
   private
 
   def set_message
