@@ -29,11 +29,10 @@ class MessagesMailboxTest < ActionMailbox::TestCase
     assert inbound_email.bounced?
   end
     
-  test "transmit message to the other player" do
+  test "creates a new message from the mail" do
     assert_difference -> { @game.messages.count } do
       receive_inbound_email_from_fixture "second_message.eml"
     end
     
-    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: Message.last }
   end
 end

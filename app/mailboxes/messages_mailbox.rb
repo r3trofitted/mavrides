@@ -9,9 +9,7 @@ class MessagesMailbox < ApplicationMailbox
   def process
     content = mail.body.to_s
     
-    if message = game.messages.create(sender:, content:, subject: mail.subject)
-      MessagesMailer.with(message:).transmission.deliver_later
-    end
+    game.messages.create sender:, content:, subject: mail.subject
   end
   
   private
