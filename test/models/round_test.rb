@@ -1,6 +1,16 @@
 require "test_helper"
 
 class RoundTest < ActiveSupport::TestCase
+  test ".build_first builds the first round for a given game, with events drawn and hands refilled" do
+    round = Round.build_first game: games(:abelar_and_philip)
+    
+    assert_equal 1, round.number
+    refute_nil round.earther_event
+    refute_nil round.explorer_event
+    assert_equal 5, round.earther_hand.count # 4 originally, minus 1 for the event, plus 2 for the refill
+    assert_equal 5, round.explorer_hand.count # 4 originally, minus 1 for the event, plus 2 for the refill
+  end
+  
   test "a hand is drawn when the first round is created" do
     round = Round.new number: 1
     
