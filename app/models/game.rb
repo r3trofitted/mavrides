@@ -22,7 +22,7 @@ class Game < ApplicationRecord
   end
   
   def update_rounds(message)
-    rounds.current.next.save! if message.sent_by?(explorer)
+    rounds.current.next.save! if message.sent_by?(earther)
   end
   
   def earther_events
