@@ -2,10 +2,12 @@ class MessagesMailer < ApplicationMailer
   before_action :set_message
 
   def transmission
+    @transmission = Transmission.new message: @message
+    
     mail(
-      subject: @message.subject,
-      from: @message.sender_email,
-      to: @message.recipient_email
+      subject: @transmission.subject,
+      from: @transmission.sender_email,
+      to: @transmission.recipient_email
     )
   end
   
