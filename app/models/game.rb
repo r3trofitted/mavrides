@@ -44,21 +44,16 @@ class Game < ApplicationRecord
     throw(:abort) if message.invalid?
     
     table    = rounds.current.earther_event.suit
-    progress = send(:"#{message.sender == earther ? 'earther' : 'explorer'}_events", table).count
+    progress = events(player: message.sender, suit: table).count
     
     MessagesMailer.with(message:).transmission(event_prompt: :"#{table}_#{progress}").deliver_later
   end
   
-  def earther_events(suit = nil)
-    events player: earther, suit:
-  end
-  
-  def explorer_events(suit = nil)
-    events player: explorer, suit:
-  end
-  
+  # TODO: receive a Player object instead of a role as 1st argument
   def draw_pile_of(role, suit:)
-    played_values = public_send(:"#{role}_events", suit).map(&:value)
+    raise ArgumentError unless role.in? %i(earther explorer)
+    
+    played_values = events(player: send(role)).map(&:value)
     (Card::VALUES - played_values).map { |v| Card.new value: v, suit: suit }
   end
 end
