@@ -1,7 +1,7 @@
 class MessagesMailer < ApplicationMailer
   before_action :set_message
 
-  def transmission
+  def transmission(event_prompt:)
     mail(
       subject: @message.subject,
       from: @message.sender_email,
