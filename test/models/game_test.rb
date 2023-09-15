@@ -51,9 +51,10 @@ class GameTest < ActiveSupport::TestCase
 
   test "a transmission is sent to forward a message upon reception" do
     game    = games(:running_game)
-    message = Message.new(sender: game.earther, subject: "👋", content: "❤️")
+    message = Message.new(sender: players(:vincent), subject: "👋", content: "❤️")
 
-    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: message } do
+    # for this game, the Earther's single event is from the :spades table
+    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: message }, args: [{ event_prompt: :spades_1 }] do
       game.messages << message
     end
   end
