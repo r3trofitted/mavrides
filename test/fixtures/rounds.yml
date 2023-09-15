@@ -5,11 +5,3 @@ running_game_round_one:
   explorer_event: "A♥️"
   earther_hand: "K♠️,5♠️,8♣️,2♥️,J♦️"
   explorer_hand: "Q♥️,7♠️,9♣️,5♥️,5♦️"
-
-running_game_round_two:
-  game: running_game
-  number: 2
-  earther_event:
-  explorer_event:
-  earther_hand:
-  explorer_hand:
