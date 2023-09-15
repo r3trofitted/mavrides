@@ -8,24 +8,24 @@ class RoundTest < ActiveSupport::TestCase
     refute_empty round.explorer_hand
   end
   
-  test "#next builds a new Round with 2 cards added to each hand" do
+  test "#next builds a new Round with 1 event drawn and 2 cards added to each hand for each player" do
     round = Round.new do |r|
       r.game           = games(:abelar_and_philip)
       r.number         = 2
-      r.earther_event  = Card.new(value: 1, suit: :clubs)
-      r.explorer_event = Card.new(value: :ace, suit: :spades)
-      r.earther_hand   = [] # ensuring that the hands are empty to make the assertions simpler
-      r.explorer_hand  = [] # ensuring that the hands are empty to make the assertions simpler
+      r.earther_event  = nil # unnecessary here
+      r.explorer_event = nil # unnecessary here
+      r.earther_hand   = [Card.new(value: 1, suit: :clubs)]     # fixing the hand to stub the event draw and simplify the testing of 2 cards being added
+      r.explorer_hand  = [Card.new(value: :ace, suit: :spades)] # fixing the hand to stub the event draw and simplify the testing of 2 cards being added
     end
     
     new_round = round.next
     
     assert_equal rounds(:abelar_and_philip_round_one).game, new_round.game
     assert_equal 3, new_round.number
-    assert_nil new_round.earther_event
-    assert_nil new_round.explorer_event
-    assert_equal 2, new_round.earther_hand.count { |c| c.suit == :clubs }   # same suit as the event
-    assert_equal 2, new_round.explorer_hand.count { |c| c.suit == :spades } # same suit as the event
+    assert_equal Card.new(value: 1, suit: :clubs), new_round.earther_event      # only card in the earther's hand
+    assert_equal Card.new(value: :ace, suit: :spades), new_round.explorer_event # only card in the explorer's hand
+    assert_equal 2, new_round.earther_hand.count { |c| c.suit == :clubs }       # same suit as the event; 2 cards because 1 has been draws and 2 added
+    assert_equal 2, new_round.explorer_hand.count { |c| c.suit == :spades }     # same suit as the event; 2 cards because 1 has been draws and 2 added
   end
   
   test "serializing events" do
