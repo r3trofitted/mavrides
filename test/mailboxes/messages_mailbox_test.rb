@@ -47,4 +47,10 @@ class MessagesMailboxTest < ActionMailbox::TestCase
       receive_inbound_email_from_fixture "second_message.eml"
     end
   end
+
+  test "bounces if the new message cannot be created" do
+    inbound_email = receive_inbound_email_from_fixture "empty_message.eml"
+
+    assert inbound_email.bounced?
+  end
 end
