@@ -48,4 +48,13 @@ class GameTest < ActiveSupport::TestCase
       game.messages << Message.new(sender: game.explorer, subject: "🖖", content: "💙")
     end
   end
+  
+  test "a transmission is sent to forward a message upon reception" do
+    game    = games(:abelar_and_philip)
+    message = Message.new(sender: game.earther, subject: "👋", content: "❤️")
+    
+    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: message } do
+      game.messages << message
+    end
+  end
 end

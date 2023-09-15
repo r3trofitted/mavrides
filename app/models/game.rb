@@ -7,7 +7,7 @@ class Game < ApplicationRecord
       last
     end
   end
-  has_many :messages, after_add: :update_rounds
+  has_many :messages, after_add: [:update_rounds, :transmit_message]
   
   def players
     [earther, explorer]
@@ -29,6 +29,12 @@ class Game < ApplicationRecord
   
   def update_rounds(message)
     rounds.current.next.save! if message.sent_by?(earther)
+  end
+  
+  def transmit_message(message)
+    throw(:abort) if message.invalid?
+    
+    MessagesMailer.with(message:).transmission.deliver_later
   end
   
   def earther_events
