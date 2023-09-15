@@ -53,7 +53,9 @@ class GameTest < ActiveSupport::TestCase
     game    = games(:abelar_and_philip)
     message = Message.new(sender: game.earther, subject: "👋", content: "❤️")
     
-    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: message } do
+    
+    expected_prompt = :spades_1 # for this game, the Earther's single event is from the :spades table
+    assert_enqueued_email_with MessagesMailer, :transmission, params: { message: message }, args: [{ event_prompt: expected_prompt }] do
       game.messages << message
     end
   end
