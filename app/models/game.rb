@@ -17,8 +17,8 @@ class Game < ApplicationRecord
     # FIXME: don't start twice!
     # FIXME: rename to starts! since this method is significant enough to potentially raise
     
+    rounds << Round.build_first(game: self)
     save! if new_record?
-    rounds.create! number: 1
   end
   
   def update_rounds(message)

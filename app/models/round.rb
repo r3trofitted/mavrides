@@ -7,13 +7,6 @@ class Round < ApplicationRecord
   serialize :earther_hand, coder: Hand, type: Hand
   serialize :explorer_hand, coder: Hand, type: Hand
   
-  after_initialize do
-    if number == 1
-      self.earther_hand  = Card.one_of_each_suit if earther_hand.empty?
-      self.explorer_hand = Card.one_of_each_suit if explorer_hand.empty?
-    end
-  end
-  
   def self.build_first(game:)
     round_zero = Round.new do |r|
       r.game = game

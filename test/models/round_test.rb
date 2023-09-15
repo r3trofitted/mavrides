@@ -11,13 +11,6 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal 5, round.explorer_hand.count # 4 originally, minus 1 for the event, plus 2 for the refill
   end
   
-  test "a hand is drawn when the first round is created" do
-    round = Round.new number: 1
-    
-    refute_empty round.earther_hand
-    refute_empty round.explorer_hand
-  end
-  
   test "#next builds a new Round with 1 event drawn and 2 cards added to each hand for each player" do
     round = Round.new do |r|
       r.game           = games(:abelar_and_philip)
