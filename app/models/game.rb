@@ -22,4 +22,17 @@ class Game < ApplicationRecord
       end
     end
   end
+  
+  def earther_events
+    rounds.filter_map(&:earther_event)
+  end
+  
+  def explorer_events
+    rounds.filter_map(&:explorer_event)
+  end
+  
+  def draw_pile_of(role, suit:)
+    played_values = public_send(:"#{role}_events").filter_map { |e| e.value if e.suit == suit }
+    (Card::VALUES - played_values).map { |v| Card.new value: v, suit: suit }
+  end
 end

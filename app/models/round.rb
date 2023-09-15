@@ -30,15 +30,8 @@ class Round < ApplicationRecord
     Round.new(
       game: game,
       number: number + 1,
-      earther_hand: fill_hand(:earther),
-      explorer_hand: fill_hand(:explorer)
+      earther_hand: earther_hand | game.draw_pile_of(:earther, suit: earther_event.suit).sample(2),
+      explorer_hand: explorer_hand | game.draw_pile_of(:explorer, suit: explorer_event.suit).sample(2)
     )
-  end
-  
-  def fill_hand(kind)
-    event = public_send :"#{kind}_event"
-    hand  = public_send :"#{kind}_hand"
-    
-    hand.concat Card::VALUES.sample(2).map { |v| Card.new value: v, suit: event.suit }
   end
 end
