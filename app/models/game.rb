@@ -35,21 +35,21 @@ class Game < ApplicationRecord
     throw(:abort) if message.invalid?
     
     table    = rounds.current.earther_event.suit
-    progress = send(:"#{message.sender == earther ? 'earther' : 'explorer'}_events").count { |e| e.suit == table }
+    progress = send(:"#{message.sender == earther ? 'earther' : 'explorer'}_events", table).count
     
     MessagesMailer.with(message:).transmission(event_prompt: :"#{table}_#{progress}").deliver_later
   end
   
-  def earther_events
-    rounds.filter_map(&:earther_event)
+  def earther_events(suit = nil)
+    rounds.filter_map(&:earther_event).reject { |r| r.suit != suit }
   end
   
-  def explorer_events
-    rounds.filter_map(&:explorer_event)
+  def explorer_events(suit = nil)
+    rounds.filter_map(&:explorer_event).reject { |r| r.suit != suit }
   end
   
   def draw_pile_of(role, suit:)
-    played_values = public_send(:"#{role}_events").filter_map { |e| e.value if e.suit == suit }
+    played_values = public_send(:"#{role}_events", suit).map(&:value)
     (Card::VALUES - played_values).map { |v| Card.new value: v, suit: suit }
   end
 end
