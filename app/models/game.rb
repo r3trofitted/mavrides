@@ -20,6 +20,9 @@ class Game < ApplicationRecord
 
   validates_presence_of :earther, :explorer
 
+  # FIXME: there is a problem with this method. Having the sending of a message
+  # by the Explorer start a new round is acceptable, but the _first_ round should
+  # exists **before** the first message is sent, not after.
   def update_rounds(message)
     if message.sent_by? explorer_player
       if rounds.any?
