@@ -9,7 +9,8 @@ class MessagesMailbox < ApplicationMailbox
   def process
     content = mail.body.to_s
     
-    game.messages.create sender:, content:, subject: mail.subject
+    message = Message.new(sender:, content:, subject: mail.subject)
+    game.messages << message or bounce_now_with(MessagesMailer.with(message:).bounced)
   end
   
   private
