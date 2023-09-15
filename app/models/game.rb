@@ -31,6 +31,15 @@ class Game < ApplicationRecord
     rounds.current.next.save! if message.sent_by?(earther)
   end
   
+  def events(player: nil, suit: nil)
+    if player
+      role = (player == earther) ? :earther : :explorer
+      rounds.map(&:"#{role}_event").reject { |e| e.suit != suit }
+    else
+      events(player: earther, suit:).concat events(player: explorer, suit:)
+    end
+  end
+  
   def transmit_message(message)
     throw(:abort) if message.invalid?
     
@@ -41,11 +50,11 @@ class Game < ApplicationRecord
   end
   
   def earther_events(suit = nil)
-    rounds.filter_map(&:earther_event).reject { |r| r.suit != suit }
+    events player: earther, suit:
   end
   
   def explorer_events(suit = nil)
-    rounds.filter_map(&:explorer_event).reject { |r| r.suit != suit }
+    events player: explorer, suit:
   end
   
   def draw_pile_of(role, suit:)
