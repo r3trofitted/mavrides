@@ -27,21 +27,21 @@ class GameTest < ActiveSupport::TestCase
     end
   end
 
-  test "a new round starts when the explorer player sends their message" do
-    game = Game.create explorer: characters(:abelar), earther: characters(:philip)
+  test "a new round starts when the earther player sends their message" do
+    game = Game.new explorer: characters(:abelar), earther: characters(:philip)
     game.starts
 
     assert_difference ->{ game.rounds.count } do
-      game.messages << Message.new(sender: game.explorer_player)
+      game.messages << Message.new(sender: players(:vincent))
     end
   end
 
-  test "the current round ends when the earther player sends their message" do
+  test "the current round continues (no new round starts) when the explorer player sends their message" do
     game = Game.create explorer: characters(:abelar), earther: characters(:philip)
     game.starts
 
     assert_no_difference ->{ game.rounds.count } do
-      game.messages << Message.new(sender: players(:vincent))
+      game.messages << Message.new(sender: players(:bruce))
     end
   end
 end
