@@ -7,11 +7,7 @@ class MessagesMailbox < ApplicationMailbox
   before_processing :bounced!, if: -> { game.blank? || sender.blank? }
 
   def process
-    content = mail.body.to_s
-
-    if message = game.messages.create(sender:, content:, subject: mail.subject)
-      MessagesMailer.with(message:).transmission.deliver_later
-    end
+    game.messages.create sender:, content: mail.body.to_s, subject: mail.subject
   end
 
   private
