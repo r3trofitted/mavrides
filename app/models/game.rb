@@ -26,6 +26,9 @@ class Game < ApplicationRecord
 
     rounds << Round.build_first(game: self)
     save! if new_record?
+    
+    GameMailer.with(game: self).game_starts_for_explorer.deliver_later
+    GameMailer.with(game: self).game_starts_for_earther.deliver_later
   end
 
   def update_rounds(message)
