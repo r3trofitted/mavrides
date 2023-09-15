@@ -14,7 +14,7 @@ class Game < ApplicationRecord
       last
     end
   end
-  has_many :messages, after_add: :update_rounds
+  has_many :messages, after_add: [:update_rounds, :transmit_message]
 
   enum :status, %i(pending running ended), default: :pending
 
@@ -36,6 +36,12 @@ class Game < ApplicationRecord
 
   def update_rounds(message)
     rounds.current.next.save! if message.sent_by? earther_player
+  end
+
+  def transmit_message(message)
+    throw(:abort) if message.invalid?
+
+    MessagesMailer.with(message:).transmission.deliver_later
   end
 
   def earther_events
