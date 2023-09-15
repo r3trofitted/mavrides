@@ -3,6 +3,10 @@ require "test_helper"
 class GameTest < ActiveSupport::TestCase
   include ActionMailer::TestHelper
   
+  test "#starts! raises if the game is already started" do
+    assert_raises { games(:abelar_and_philip).starts! }
+  end
+  
   test "#starts creates the first round" do
     game = Game.new earther: players(:philip), explorer: players(:abelar)
     
