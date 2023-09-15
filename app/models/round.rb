@@ -14,6 +14,18 @@ class Round < ApplicationRecord
     end
   end
 
+  def self.build_first(game:)
+    round_zero = Round.new do |r|
+      r.game          = game
+      r.number        = 0
+      r.earther_hand  = Card.one_of_each_suit
+      r.explorer_hand = Card.one_of_each_suit
+      r.readonly!
+    end
+
+    round_zero.next
+  end
+
   def earther_hand=(value)
     value = Hand.new(*value) if value.kind_of? Array
 
