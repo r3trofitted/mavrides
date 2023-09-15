@@ -34,7 +34,10 @@ class Game < ApplicationRecord
   def transmit_message(message)
     throw(:abort) if message.invalid?
     
-    MessagesMailer.with(message:).transmission.deliver_later
+    table    = rounds.current.earther_event.suit
+    progress = send(:"#{message.sender == earther ? 'earther' : 'explorer'}_events").count { |e| e.suit == table }
+    
+    MessagesMailer.with(message:).transmission(event_prompt: :"#{table}_#{progress}").deliver_later
   end
   
   def earther_events
