@@ -43,10 +43,7 @@ class Game < ApplicationRecord
   def transmit_message(message)
     throw(:abort) if message.invalid?
     
-    table    = rounds.current.earther_event.suit
-    progress = events(player: message.sender, suit: table).count
-    
-    MessagesMailer.with(message:).transmission(event_prompt: :"#{table}_#{progress}").deliver_later
+    MessagesMailer.with(message:).transmission.deliver_later
   end
   
   # TODO: receive a Player object instead of a role as 1st argument

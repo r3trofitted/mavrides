@@ -30,4 +30,5 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  event_prompts:
+    spades_1: Observatory stations detect an anomaly consistent with states of matter previously confined to theoretical equations.

@@ -2,7 +2,7 @@ require "test_helper"
 
 class MessagesMailerTest < ActionMailer::TestCase
   test "transmission" do
-    mail = MessagesMailer.with(message: messages(:first_message)).transmission(event_prompt: :spades_1)
+    mail = MessagesMailer.with(message: messages(:first_message)).transmission
     
     assert_equal "さようなら", mail.subject
     assert_equal ["abelar@mavrides.example"], mail.from
@@ -10,6 +10,7 @@ class MessagesMailerTest < ActionMailer::TestCase
     
     body = mail.body.to_s.chomp # I'm not sure why chomp is needed, TBH, but here we are…
     
+    # the Earther's event prompt is the 1st from the spades table (cf. abelar_and_philip_round_one fixtures)
     assert_match <<~EVENT_PROMPT, body
       Observatory stations detect an anomaly consistent with states of matter previously confined to theoretical equations.
     EVENT_PROMPT
