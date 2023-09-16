@@ -1,12 +1,12 @@
 class Transmission
   delegate_missing_to :@message
   
-  def initialize(message:)
-    @message = message
+  def initialize(message:, round:)
+    @message, @round = message, round
   end
     
   def event_prompt
-    table    = game.rounds.current.event_for(recipient).suit
+    table    = @round.event_for(recipient).suit
     progress = game.events(player: recipient, suit: table).count
     
     :"#{table}_#{progress}"

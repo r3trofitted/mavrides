@@ -2,7 +2,9 @@ require "test_helper"
 
 class MessagesMailerTest < ActionMailer::TestCase
   test "transmission" do
-    mail = MessagesMailer.with(message: messages(:first_message)).transmission
+    mail = MessagesMailer
+             .with(message: messages(:first_message))
+             .transmission(rounds(:abelar_and_philip_round_one))
     
     assert_equal "さようなら", mail.subject
     assert_equal ["abelar@mavrides.example"], mail.from

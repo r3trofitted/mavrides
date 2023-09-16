@@ -44,7 +44,7 @@ class Game < ApplicationRecord
   def transmit_message(message)
     throw(:abort) if message.invalid?
     
-    MessagesMailer.with(message:).transmission.deliver_later
+    MessagesMailer.with(message:).transmission(rounds.current).deliver_later
   end
   
   # TODO: receive a Player object instead of a role as 1st argument

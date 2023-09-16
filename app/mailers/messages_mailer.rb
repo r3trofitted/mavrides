@@ -1,8 +1,8 @@
 class MessagesMailer < ApplicationMailer
   before_action :set_message
 
-  def transmission
-    @transmission = Transmission.new message: @message
+  def transmission(round)
+    @transmission = Transmission.new(message: @message, round: round)
     
     mail(
       subject: @transmission.subject,
