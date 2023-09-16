@@ -1,0 +1,11 @@
+abelar:
+  game: abelar_and_philip
+  player: bruce
+  name: Abelar Lindsay
+  role: explorer
+
+philip:
+  game: abelar_and_philip
+  player: vincent
+  name: Philip Constantine
+  role: earther

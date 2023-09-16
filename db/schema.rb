@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_09_14_043742) do
+ActiveRecord::Schema[7.1].define(version: 2023_09_16_082234) do
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
@@ -46,6 +46,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_14_043742) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.integer "player_id", null: false
+    t.integer "game_id", null: false
+    t.string "name", null: false
+    t.string "role", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_characters_on_game_id"
+    t.index ["player_id"], name: "index_characters_on_player_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -88,7 +99,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_14_043742) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "characters", "games"
+  add_foreign_key "characters", "players"
+  add_foreign_key "messages", "characters", column: "sender_id"
   add_foreign_key "messages", "games"
-  add_foreign_key "messages", "players", column: "sender_id"
   add_foreign_key "rounds", "games"
 end

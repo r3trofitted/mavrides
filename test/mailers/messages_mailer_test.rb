@@ -7,8 +7,8 @@ class MessagesMailerTest < ActionMailer::TestCase
              .transmission(rounds(:abelar_and_philip_round_one))
     
     assert_equal "さようなら", mail.subject
-    assert_equal ["abelar@mavrides.example"], mail.from
-    assert_equal ["philip@mavrides.example"], mail.to
+    assert_equal ["bruce.s@mavrides.example"], mail.from
+    assert_equal ["vincent.o@mavrides.example"], mail.to
     
     body = mail.body.to_s.chomp # I'm not sure why chomp is needed, TBH, but here we are…
     

@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
-  belongs_to :earther, class_name: "Player"
-  belongs_to :explorer, class_name: "Player"
+  has_one :earther, -> { where role: "earther" }, class_name: "Character"
+  has_one :explorer, -> { where role: "explorer" }, class_name: "Character"
   
   has_many :rounds, -> { order(number: :asc) } do
     def current
@@ -9,7 +9,7 @@ class Game < ApplicationRecord
   end
   has_many :messages, after_add: [:update_rounds, :transmit_message]
   
-  def players
+  def characters
     [earther, explorer]
   end
   

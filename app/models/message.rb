@@ -1,14 +1,19 @@
 class Message < ApplicationRecord
   belongs_to :game
-  belongs_to :sender, class_name: "Player"
+  belongs_to :sender, class_name: "Character"
   
   validates_presence_of :subject, :content
   
-  delegate :email, to: :sender, prefix: true
-  delegate :email, to: :recipient, prefix: true
+  def sent_by?(character)
+    sender == character
+  end
   
-  def sent_by?(player)
-    sender == player
+  def sender_email
+    sender.player_email
+  end
+  
+  def recipient_email
+    recipient.player_email
   end
   
   def recipient
