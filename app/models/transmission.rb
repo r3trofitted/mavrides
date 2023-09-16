@@ -9,6 +9,6 @@ class Transmission
     table    = round.event_for(recipient).suit
     progress = game.events(character: recipient, suit: table).count
     
-    :"#{sender_role}.#{table}_#{progress}" # e.g. :explorer.spades_3
+    :"#{recipient.role}.#{table}_#{progress}" # e.g. :explorer.spades_3
   end
 end

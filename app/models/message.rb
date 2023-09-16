@@ -3,8 +3,6 @@ class Message < ApplicationRecord
   belongs_to :round
   belongs_to :game
   
-  delegate :role, to: :sender, prefix: true
-  
   validates_uniqueness_of :sender_id, scope: :round_id
   validates_presence_of :subject, :content
   
