@@ -7,7 +7,7 @@ class Transmission
     
   def event_prompt
     table    = round.event_for(recipient).suit
-    progress = game.events(player: recipient, suit: table).count
+    progress = game.events(character: recipient, suit: table).count
     
     :"#{table}_#{progress}"
   end

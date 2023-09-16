@@ -35,13 +35,13 @@ class Game < ApplicationRecord
     rounds.current.next.save! if message.sent_by?(earther)
   end
   
-  def events(player: nil, suit: nil)
-    if player
+  def events(character: nil, suit: nil)
+    if character
       rounds
-        .map    { |r| r.event_for(player) }
+        .map    { |r| r.event_for(character) }
         .reject { |e| e.suit != suit }
     else
-      events(player: earther, suit:).concat events(player: explorer, suit:)
+      events(character: earther, suit:).concat events(character: explorer, suit:)
     end
   end
   
@@ -55,7 +55,7 @@ class Game < ApplicationRecord
   def draw_pile_of(role, suit:)
     raise ArgumentError unless role.in? %i(earther explorer)
     
-    played_values = events(player: send(role)).map(&:value)
+    played_values = events(character: send(role)).map(&:value)
     (Card::VALUES - played_values).map { |v| Card.new value: v, suit: suit }
   end
 end

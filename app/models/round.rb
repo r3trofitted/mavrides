@@ -50,17 +50,11 @@ class Round < ApplicationRecord
     )
   end
   
-  def event_for(player)
-    send "#{role(player)}_event"
+  def event_for(character)
+    send "#{character.role}_event"
   end
   
-  def hand_of(player)
-    send "#{role(player)}_hand"
-  end
-  
-  private
-  
-  def role(player)
-    player.eql?(game.earther) ? :earther : :explorer # SMELL
+  def hand_of(character)
+    send "#{character.role}_hand"
   end
 end
