@@ -31,4 +31,5 @@
 
 en:
   event_prompts:
-    spades_1: Observatory stations detect an anomaly consistent with states of matter previously confined to theoretical equations.
+    explorer:
+      spades_1: Observatory stations detect an anomaly consistent with states of matter previously confined to theoretical equations.

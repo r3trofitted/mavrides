@@ -1,2 +1,2 @@
-<%= t @transmission.event_prompt, scope: :event_prompts %>
+<%= t @transmission.event_prompt, scope: [:event_prompts, @transmission.sender.role] %>
 <%= @transmission.content %>
