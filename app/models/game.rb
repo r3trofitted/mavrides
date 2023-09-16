@@ -33,8 +33,9 @@ class Game < ApplicationRecord
   
   def events(player: nil, suit: nil)
     if player
-      role = (player == earther) ? :earther : :explorer
-      rounds.map(&:"#{role}_event").reject { |e| e.suit != suit }
+      rounds
+        .map    { |r| r.event_for(player) }
+        .reject { |e| e.suit != suit }
     else
       events(player: earther, suit:).concat events(player: explorer, suit:)
     end

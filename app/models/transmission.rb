@@ -6,9 +6,7 @@ class Transmission
   end
     
   def event_prompt
-    role     = recipient.eql?(game.earther) ? :earther : :explorer # SMELL
-    
-    table    = game.rounds.current.public_send("#{role}_event").suit # SMELL
+    table    = game.rounds.current.event_for(recipient).suit
     progress = game.events(player: recipient, suit: table).count
     
     :"#{table}_#{progress}"
