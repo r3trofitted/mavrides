@@ -47,4 +47,23 @@ class RoundTest < ActiveSupport::TestCase
     assert_includes round.explorer_hand, Card.new(value: :king, suit: :clubs)
     assert round.save
   end
+  
+  test "returning the hand for a given Player" do
+    round    = rounds(:abelar_and_philip_round_one)
+    earther  = players(:philip)
+    explorer = players(:abelar)
+    
+    assert_equal Card.new(value: 3, suit: :spades), round.event_for(earther)
+    assert_equal Card.new(value: :ace, suit: :hearts), round.event_for(explorer)
+  end
+  
+  test "returning the event for a given Player" do
+    round    = rounds(:abelar_and_philip_round_one)
+    earther  = players(:philip)
+    explorer = players(:abelar)
+    
+    # Using the dumped values for ease here
+    assert_equal "8♣️,J♦️,2♥️,5♠️,K♠️", Hand.dump(round.hand_of(earther))
+    assert_equal "9♣️,5♦️,5♥️,Q♥️,7♠️", Hand.dump(round.hand_of(explorer))
+  end
 end

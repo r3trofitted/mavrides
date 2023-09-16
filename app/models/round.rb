@@ -30,7 +30,7 @@ class Round < ApplicationRecord
     
     super(value)
   end
-  
+    
   def next
     new_earther_event  = earther_hand.sample
     new_explorer_event = explorer_hand.sample
@@ -46,5 +46,19 @@ class Round < ApplicationRecord
       earther_hand: new_earther_hand,
       explorer_hand: new_explorer_hand
     )
+  end
+  
+  def event_for(player)
+    send "#{role(player)}_event"
+  end
+  
+  def hand_of(player)
+    send "#{role(player)}_hand"
+  end
+  
+  private
+  
+  def role(player)
+    player.eql?(game.earther) ? :earther : :explorer # SMELL
   end
 end
