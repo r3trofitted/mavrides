@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_09_16_082234) do
+ActiveRecord::Schema[7.1].define(version: 2023_09_16_102026) do
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
@@ -73,7 +73,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_16_082234) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "round_id"
     t.index ["game_id"], name: "index_messages_on_game_id"
+    t.index ["round_id", "sender_id"], name: "index_messages_on_round_id_and_sender_id", unique: true
+    t.index ["round_id"], name: "index_messages_on_round_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
@@ -103,5 +106,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_16_082234) do
   add_foreign_key "characters", "players"
   add_foreign_key "messages", "characters", column: "sender_id"
   add_foreign_key "messages", "games"
+  add_foreign_key "messages", "rounds"
   add_foreign_key "rounds", "games"
 end

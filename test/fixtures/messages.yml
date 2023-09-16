@@ -1,5 +1,6 @@
 first_message:
   game: abelar_and_philip
+  round: abelar_and_philip_round_one 
   sender: abelar
   subject: さようなら
   content: >-

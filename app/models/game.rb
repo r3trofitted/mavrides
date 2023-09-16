@@ -7,7 +7,7 @@ class Game < ApplicationRecord
       last
     end
   end
-  has_many :messages, after_add: [:update_rounds, :transmit_message]
+  has_many :messages, before_add: :set_round, after_add: [:update_rounds, :transmit_message] # TODO: validate coherence of the message's round
   
   def characters
     [earther, explorer]
@@ -25,6 +25,10 @@ class Game < ApplicationRecord
   
   def started?
     rounds.any?
+  end
+  
+  def set_round(message)
+    message.round ||= rounds.current
   end
   
   def update_rounds(message)

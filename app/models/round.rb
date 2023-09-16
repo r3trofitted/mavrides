@@ -1,6 +1,8 @@
 class Round < ApplicationRecord
   belongs_to :game
   
+  has_many :messages # TODO: add contraints (1 message of each role)
+  
   serialize :earther_event, coder: Card
   serialize :explorer_event, coder: Card
   
