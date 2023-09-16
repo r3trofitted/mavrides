@@ -30,6 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  event_prompts:
+  game_event_prompts:
     earther:
       spades_1: The first successful demonstration of cryo-sleep technology on rodents raises the potential for human hibernation.
+  personal_event_prompts:
+    3: A major holiday brings back memories of an event you’d forgotten about.
