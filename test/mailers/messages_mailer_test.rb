@@ -4,7 +4,7 @@ class MessagesMailerTest < ActionMailer::TestCase
   test "transmission" do
     mail = MessagesMailer
              .with(message: messages(:first_message))
-             .transmission(rounds(:abelar_and_philip_round_one))
+             .transmission
     
     assert_equal "さようなら", mail.subject
     assert_equal ["bruce.s@mavrides.example"], mail.from
