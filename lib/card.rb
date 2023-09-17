@@ -3,7 +3,7 @@ class Card
   include Comparable
   
   SUITS  = %i[clubs diamonds hearts spades]
-  VALUES = %i[1 2 3 4 5 6 7 8 9 jack queen king ace]
+  VALUES = %i[1 2 3 4 5 6 7 8 9 10 jack queen king ace]
   EMOJIS = { spades: "♠️", clubs: "♣️", hearts: "♥️", diamonds: "♦️" }
   
   attr_reader :value, :suit
@@ -11,7 +11,7 @@ class Card
   class << self
     def load(payload)
       if payload.present?
-        v, s = payload.scan /\X/ # \X matches a single Unicode grapheme (necessary because the emojis are grapheme _clusters_)
+        v, s = payload.scan(/([\dJQKA]{1,2})(\X)/).flatten # \X matches a single Unicode grapheme (necessary because the emojis are grapheme _clusters_)
         
         value = VALUES.detect { |s| s.start_with? /#{v}/i }
         suit  = EMOJIS.key(s)
