@@ -21,7 +21,7 @@ class MessagesMailbox < ApplicationMailbox
   private
   
   def set_game_and_sender
-    @game   = Game.includes(:earther, :explorer).find_by(id: mail.to.grep(MATCHER) { $1 })
+    @game   = Game.started.includes(:earther, :explorer).find_by(id: mail.to.grep(MATCHER) { $1 })
     # OPTIMIZE: we should be able to do better to get the sender with a finder method (Player.character_in_game maybe?)
     @sender = game.characters.find { |c| mail.from.include? c.player_email } unless game.blank?
   end

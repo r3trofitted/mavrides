@@ -1,2 +1,4 @@
 abelar_and_philip:
   status: <%= Game.statuses[:started] %>
+ended_game:
+  status: <%= Game.statuses[:ended] %>
