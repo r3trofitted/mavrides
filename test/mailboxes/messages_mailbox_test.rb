@@ -13,7 +13,8 @@ class MessagesMailboxTest < ActionMailbox::TestCase
     inbound_email = receive_inbound_email_from_mail(
       to: '"unknown game" <123@mavrides.example>',
       from: '"Abelar" <bruce.s@mavrides.example>',
-      subject: "Goodbye, Earth"
+      subject: "Goodbye, Earth",
+      body: "See you!"
     )
     
     assert inbound_email.bounced?
@@ -23,7 +24,8 @@ class MessagesMailboxTest < ActionMailbox::TestCase
     inbound_email = receive_inbound_email_from_mail(
       to: "#{@game.id}@mavrides.example",
       from: '"Unknown player" <korolev@example.com>',
-      subject: "White orbit"
+      subject: "White orbit",
+      body: "Red star"
     )
     
     assert inbound_email.bounced?
