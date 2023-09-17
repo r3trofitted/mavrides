@@ -9,6 +9,8 @@ class Game < ApplicationRecord
   end
   has_many :messages, before_add: :set_round, after_add: [:update_rounds, :transmit_message] # TODO: validate coherence of the message's round
   
+  enum :status, %i(pending started ended), default: :pending
+  
   def characters
     [earther, explorer]
   end
