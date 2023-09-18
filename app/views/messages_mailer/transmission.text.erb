@@ -2,4 +2,6 @@
 
 <%= t @transmission.personal_event_prompt, scope: :personal_event_prompts %>
 
+<%= t(".ending_notice", recipient: @transmission.recipient_name) if @transmission.second_to_last? %>
+
 <%= @transmission.content %>

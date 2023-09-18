@@ -10,14 +10,14 @@ philip:
   name: Philip Constantine
   role: earther
 
-abelar_in_ended_game:
-    game: ended_game
-    player: bruce
-    name: Abelar Lindsay
-    role: explorer
+abelar_in_ending_game:
+  game: ending_game
+  player: bruce
+  name: Abelar Lindsay
+  role: explorer
   
-philip_in_ended_game:
-  game: ended_game
+philip_in_ending_game:
+  game: ending_game
   player: vincent
   name: Philip Constantine
   role: earther

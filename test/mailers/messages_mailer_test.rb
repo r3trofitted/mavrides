@@ -1,7 +1,7 @@
 require "test_helper"
 
 class MessagesMailerTest < ActionMailer::TestCase
-  test "transmission" do
+  test "regular transmission" do
     mail = MessagesMailer
              .with(message: messages(:first_message))
              .transmission
@@ -25,5 +25,17 @@ class MessagesMailerTest < ActionMailer::TestCase
     assert_match <<~MESSAGE.chomp, body
       This is it. We are off. To Tau Ceti, can you believe it? Even though I'll never see what's out there, I know.
     MESSAGE
+  end
+  
+  test "transmission when all five events from a Major Event table have come to pass" do
+    message = messages(:second_to_last_message)
+    mail    = MessagesMailer
+                .with(message: message)
+                .transmission
+    
+    assert_match <<~ENDING_NOTICE.squish, mail.body.to_s.chomp
+      This event marks the end of the game. Send a final message to #{message.recipient_name}; this message will
+      not be distorted. Finish the message with [Connection Lost].
+    ENDING_NOTICE
   end
 end

@@ -6,3 +6,10 @@ first_message:
   content: >-
     This is it. We are off. To Tau Ceti, can you believe it?
     Even though I'll never see what's out there, I know.
+second_to_last_message:
+  game: ending_game
+  round: ending_game_round_five
+  sender: abelar_in_ending_game
+  subject: not there yet
+  content: >-
+    Space is really big, isn't it?

@@ -6,6 +6,8 @@ class Message < ApplicationRecord
   validates_uniqueness_of :sender_id, scope: :round_id
   validates_presence_of :subject, :content
   
+  delegate :name, to: :recipient, prefix: true
+  
   def sent_by?(character)
     sender == character
   end

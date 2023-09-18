@@ -21,8 +21,11 @@ class MessagesMailboxTest < ActionMailbox::TestCase
   end
   
   test "bounce mail for ended games" do
+    game = games(:ending_game)
+    game.ended!
+    
     inbound_email = receive_inbound_email_from_mail(
-      to: "'finished game' <#{games(:ended_game).id}@mavrides.example>",
+      to: "'finished game' <#{game.id}@mavrides.example>",
       from: '"Abelar" <bruce.s@mavrides.example>',
       subject: "Goodbye, Earth",
       body: "See you!"
