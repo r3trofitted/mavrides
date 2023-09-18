@@ -53,7 +53,7 @@ class RoundTest < ActiveSupport::TestCase
     earther  = characters(:philip)
     explorer = characters(:abelar)
     
-    assert_equal Card.new(value: 3, suit: :spades), round.event_for(earther)
+    assert_equal Card.new(value: 7, suit: :spades), round.event_for(earther)
     assert_equal Card.new(value: :ace, suit: :hearts), round.event_for(explorer)
   end
   

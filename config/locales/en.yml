@@ -35,6 +35,7 @@ en:
       spades_1: The first successful demonstration of cryo-sleep technology on rodents raises the potential for human hibernation.
   personal_event_prompts:
     3: A major holiday brings back memories of an event you’d forgotten about.
+    7: Someone got married! Who was it and what do they mean to you?
   messages_mailer:
     transmission:
       ending_notice: >

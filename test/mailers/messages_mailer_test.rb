@@ -17,9 +17,9 @@ class MessagesMailerTest < ActionMailer::TestCase
       The first successful demonstration of cryo-sleep technology on rodents raises the potential for human hibernation.
     GAME_EVENT_PROMPT
     
-    # the Earther's Personal Event is "3" (cf. abelar_and_philip_round_one fixtures)
+    # the Earther's Personal Event is "7" (cf. abelar_and_philip_round_one fixtures)
     assert_match <<~PERSONAL_EVENT_PROMPT.chomp, body
-      A major holiday brings back memories of an event you’d forgotten about.
+      Someone got married! Who was it and what do they mean to you?
     PERSONAL_EVENT_PROMPT
     
     assert_match <<~MESSAGE.chomp, body
