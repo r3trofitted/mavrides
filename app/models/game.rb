@@ -43,11 +43,14 @@ class Game < ApplicationRecord
     end
   end
   
+  # TODO: change :suit argument to :suits to allow filtering on more than one suit
   def events(character: nil, suit: nil)
+    filtered_suits = suit ? [suit] : Card::SUITS
+    
     if character
       rounds
-        .map    { |r| r.event_for(character) }
-        .reject { |e| e.suit != suit }
+        .map { |r| r.event_for character }
+        .filter { |r| r.suit.in? filtered_suits }
     else
       events(character: earther, suit:).concat events(character: explorer, suit:)
     end
