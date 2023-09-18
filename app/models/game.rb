@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   has_one :earther, -> { where role: "earther" }, class_name: "Character"
   has_one :explorer, -> { where role: "explorer" }, class_name: "Character"
+  has_one :earther_player, through: :earther
+  has_one :explorer_player, through: :player
   
   has_many :rounds, -> { order(number: :asc) } do
     def current
@@ -34,7 +36,11 @@ class Game < ApplicationRecord
   end
   
   def update_rounds(message)
-    rounds.current.next.save! if message.sent_by?(earther)
+    if message.final?
+      ended!
+    elsif message.sent_by? earther
+      rounds.current.next.save! 
+    end
   end
   
   def events(character: nil, suit: nil)

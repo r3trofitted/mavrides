@@ -21,4 +21,8 @@ class Message < ApplicationRecord
   def recipient
     sent_by?(game.explorer) ? game.earther : game.explorer
   end
+  
+  def final?
+    content =~ /\[Connection Lost\]/i
+  end
 end

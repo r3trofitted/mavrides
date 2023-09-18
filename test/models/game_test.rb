@@ -57,4 +57,22 @@ class GameTest < ActiveSupport::TestCase
       game.messages << message
     end
   end
+  
+  test "a game ends when it receives a message ending with [Connection Lost]" do
+    game = games(:abelar_and_philip)
+    
+    message = Message.new(sender: game.earther, subject: "farewell", content: <<~TXT)
+      This is it.
+      [Connection Lost]
+    TXT
+    
+    assert_changes "game.ended?" do
+      game.messages << message
+    end
+  end
+  
+  # TODO
+  test "a game doesn't end if the [Connection Lost] mention is not at the end of the message" do
+    skip "TODO"
+  end
 end
