@@ -42,7 +42,7 @@ class Game < ApplicationRecord
       if at_least_one_major_event_table_is_through?
         ended!
       else
-        rounds.current.next.save!
+        rounds.current.next!
       end
     end
   end

@@ -50,6 +50,10 @@ class Round < ApplicationRecord
     )
   end
   
+  def next!
+    self.next.save!
+  end
+  
   def event_for(character)
     send "#{character.role}_event"
   end
