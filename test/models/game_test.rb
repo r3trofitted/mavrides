@@ -75,4 +75,12 @@ class GameTest < ActiveSupport::TestCase
   test "a game doesn't end if the [Connection Lost] mention is not at the end of the message" do
     skip "TODO"
   end
+  
+  test "the game ends when the Earther sends their message, if the all the events from a Major Events table have passed" do
+    game = games(:ending_game)
+    
+    assert_changes "game.ended?" do
+      game.messages << Message.new(sender: game.earther, subject: "!!!", content: "The player should have added the ending mention")
+    end
+  end
 end

@@ -39,21 +39,21 @@ class Game < ApplicationRecord
     if message.final?
       ended!
     elsif message.sent_by? earther
-      rounds.current.next.save! 
+      if at_least_one_major_event_table_is_through?
+        ended!
+      else
+        rounds.current.next.save!
+      end
     end
   end
   
   # TODO: change :suit argument to :suits to allow filtering on more than one suit
-  def events(character: nil, suit: nil)
+  def events_for(character, suit: nil)
     filtered_suits = suit ? [suit] : Card::SUITS
     
-    if character
-      rounds
-        .map { |r| r.event_for character }
-        .filter { |r| r.suit.in? filtered_suits }
-    else
-      events(character: earther, suit:).concat events(character: explorer, suit:)
-    end
+    rounds
+      .map { |r| r.event_for character }
+      .filter { |r| r.suit.in? filtered_suits }
   end
   
   def transmit_message(message)
@@ -66,7 +66,21 @@ class Game < ApplicationRecord
   def draw_pile_of(role, suit:)
     raise ArgumentError unless role.in? %i(earther explorer)
     
-    played_values = events(character: send(role)).map(&:value)
+    player = send(role)
+    played_values = events_for(player).map(&:value)
+    
     (Card::VALUES - played_values).map { |v| Card.new value: v, suit: suit }
+  end
+  
+  private
+  
+  # SMELL: we're doing too many acrobatics with primitives here. There must be some object or method waiting to emerge
+  def at_least_one_major_event_table_is_through?
+    all_events = [events_for(earther), events_for(explorer)]
+    
+    all_events
+      .map { |es| es.map(&:suit).tally }
+      .flat_map(&:values)
+      .any? { |c| c > 4 }
   end
 end

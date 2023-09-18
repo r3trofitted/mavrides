@@ -24,6 +24,6 @@ class Transmission
   end
   
   def major_event_progress
-    game.events(character: recipient, suit: major_event_table).count
+    game.events_for(recipient, suit: major_event_table).count
   end
 end
