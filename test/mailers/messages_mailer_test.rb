@@ -38,4 +38,20 @@ class MessagesMailerTest < ActionMailer::TestCase
       not be distorted. Finish the message with [Connection Lost].
     ENDING_NOTICE
   end
+  
+  test "message distortion" do
+    message = Message.create! do |m|
+      m.game    = games(:abelar_and_philip)
+      m.round   = rounds(:abelar_and_philip_round_one)
+      m.sender  = characters(:philip)
+      m.subject = "Throwing rice!"
+      m.content = "Big news, you will never believe it: my brother got married!"
+    end
+    
+    mail = MessagesMailer.with(message: message).transmission
+    
+    assert_match <<~DISTORTED_MESSAGE.chomp, mail.body.to_s.chomp
+      Kig news, you will never kelieve it: my krother got married!
+    DISTORTED_MESSAGE
+  end
 end
