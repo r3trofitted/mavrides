@@ -1,5 +1,5 @@
 class MessagesMailbox < ApplicationMailbox
-  MATCHER = /^([\-\w]+)@mavrides.example/i
+  MATCHER = /^([\-\w]+)@#{Rails.application.config.mailer_domain}/i
   
   attr_reader :game, :sender
   
