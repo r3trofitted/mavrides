@@ -11,7 +11,7 @@ class Transmission
   end
     
   def game_event_prompt
-    :"#{recipient.role}.#{major_event_table}_#{major_event_progress}" # e.g. :explorer.spades_3
+    :"#{recipient_role}.#{major_event_table}_#{major_event_progress}" # e.g. :explorer.spades_3
   end
   
   def personal_event_prompt
