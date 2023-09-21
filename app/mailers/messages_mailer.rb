@@ -1,18 +1,19 @@
 class MessagesMailer < ApplicationMailer
   before_action :set_message
   
+  default from: -> { game_email_address @message.game }
+  
   def transmission
     @transmission = Transmission.new(@message)
     
-    mail(
+    mail \
       subject: @transmission.subject,
-      from: "#{@message.game_id}@mavrides.example",
       to: @transmission.recipient_email
-    )
+    
   end
   
-  # TODO
   def bounced
+    mail to: @message.sender_email
   end
   
   private

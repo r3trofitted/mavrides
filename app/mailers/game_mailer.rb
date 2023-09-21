@@ -1,7 +1,7 @@
 class GameMailer < ApplicationMailer
   before_action :set_game
   
-  default from: -> { "#{@game.id}@#{config.mailer_domain}" }
+  default from: -> { game_email_address @game }
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
