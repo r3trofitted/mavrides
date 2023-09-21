@@ -1,41 +1,61 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   game_event_prompts:
     earther:
+      clubs_1: A major scientific breakthrough confirms a new branch of high energy physics, termed Distributed Field Theory. Early experiments with DFT computing demonstrates its potential to outperform quantum computing by a factor of 10 or more.
+      clubs_2: Researchers discover evidence of proto-digital life forms evolving at a rapid rate within DFT networks.
+      clubs_3: Digital entities resisting within the networks and referring to themselves as Distributed Quantum Intelligences make contact. The general population come to call them DQs.
+      clubs_4: Guided by the DQs humanity breaks the lightspeed barrier through warping of spacetime at a sub- quantum level. The construction of extra-solar FTL ships begins.
+      clubs_5: A new wave of human exploration begins but travel to Tau Ceti and the Generation Fleet is discovered to be impossible. The DQs present evidence that FTL travel along the route is being deliberately blocked by an unknown mechanism.
+      diamonds_1: An unusually strong season of storms in both the Atlantic and Pacific Oceans disrupts atmospheric and ocean currents.
+      diamonds_2: The solar observatory network detects a significant and unexpected increase in sunspot activity. Orbital habitats are placed on high alert.
+      diamonds_3: A sustained increase in the intensity of solar activity distorts the earth’s magnetic field, leading to the mass deaths of thousands of birds when flocks get lost during annual migrations.
+      diamonds_4: A coronal mass ejection overwhelms orbital habitats and off-world colonies. Earthbound communication networks are destroyed following the loss of thousands of satellites.
+      diamonds_5: Unprecedented solar activity strips the Earth of much of its protective upper atmosphere. Under constant bombardment by solar radiation the biosphere, and human civilisation begins to collapse.
+      hearts_1: The departure of the Fleet triggers ongoing debates about the future of humanity and its place in the cosmos. Much of the debate centres around the costs of the expedition and the associated risks.
+      hearts_2: Solar Isolationists and Galactic Expansionists become the dominant political factions on Earth and across the Sol system.
+      hearts_3: Isolationists claiming to have discovered evidence about a hidden warning concealed within the Signal, attempt to send a recall order to the Generation Fleet.
+      hearts_4: A fleet is detected approaching the edge of the heliosphere. Its construction appears to be based on that of the Generation Fleet but the approaching ships are far more advanced than those that departed from Earth.
+      hearts_5: Having ignored every attempt to communicate with it, the silent flotilla enters orbit around Jupiter. Five immense, humanoid vessels detach and begin to systematically eradicate solar defences before heading for Earth.
       spades_1: The first successful demonstration of cryo-sleep technology on rodents raises the potential for human hibernation.
+      spades_2: Orbital observatories identify a second star system with multiple habitable planets suitable for human life.
+      spades_3: Earth and the Solar Colonies agree to create a second fleet, utilising the experimental cryo-sleep technology to push beyond the limits of the original Generation Fleet.
+      spades_4: Following a system wide lottery you are offered a position aboard the Cryo Fleet as part of humanity’s second solar exodus.
+      spades_5: The Cryo Fleet prepares for launch and those chosen to make the journey say their final goodbyes before departing for the staging post in orbit around Jupiter.
+  explorer:
+    clubs_1: A weak, directional signal is detected originating from an apparently empty region of space. The signal is heavily distorted and largely undecipherable.
+    clubs_2: On-board systems finally decode a series of instructions embedded within the Signal and automatically begin fabrication of a prototype faster than light jump drive. The crew are only alerted to its existence following the completion of the prototype drive.
+    clubs_3: After a series of initial failures an uncrewed shuttle makes the first successful jump, travelling 0.1 light years in less than 3 hours.
+    clubs_4: ThefirstseriesofcrewedjumpsreachLuyten726-8. Subsequent attempts to jump to Tau Ceti or back to Sol are blocked by distortions in space-time.
+    clubs_5: Buoyed by the new jump drives the fleet votes to abandon its target of Tau Ceti and explore other habitable systems. Elements of the fleet depart in all directions and humanity becomes a galactic civilisation.
+    diamonds_1: One of the gigantic umbrella shield ships suffers damage after collision with an object that failed to register on active scans. The science directorate theorises that dark matter may have been involved.
+    diamonds_2: A dark matter micro-meteorite shower penetrates the umbrella shield and destroys the Archimedes, an engineering support ship. All hands on board are lost and the wreckage is left behind by the flotilla.
+    diamonds_3: Damage to the main antenna results in the loss of communication with the other two umbrella formations. The rear mounted Earth-Fleet communication laser remains functional. For now.
+    diamonds_4: Damage to the umbrella ship sustained during the earlier meteorite showers turns out to have been more substantial than originally believed and the vessel comes apart mid-flight. Under relentless bombardment the Fleet draws in on itself, docking support ships to the main vessel in a last ditch effort to protect the bulk of the crew .
+    diamonds_5: Underthepressureofcontinuedmeteoriteshowers critical systems stutter on and off. Life support fails for close to an hour before returning at less than half the required levels.
+    hearts_1: Evidence comes to light that a significant proportion of the command crew received commissions thanks to family connections and lack the qualifications mandated by their rank.
+    hearts_2: A mass demonstration against corruption ends in violence when security forces are deployed to enforce a curfew. Talk of a general strike spreads amongst the crew.
+    hearts_3: TheFleetAdmiral,implicatedinthegrowingscandal, is found dead in their cabin. While the official report lists a heart attack as the cause rumours circulate about whether they committed suicide or were assassinated.
+    hearts_4: In light of growing civil unrest checkpoints are erected between each major compartment, restricting passage by off duty crew members. In response, engineering, hydroponics, and maintenance crews down tools.
+    hearts_5: Security forces execute the command crew, seize control of the bridge and declare martial law. As fighting erupts throughout the ship a final, desperate comm burst is sent into the dark.
+    spades_1: Observatory stations detect an anomaly consistent with states of matter previously confined to theoretical equations.
+    spades_2: Further observations suggest the signal to be artificial in nature and within reach of the fleet.
+    spades_3: Following a ship wide vote the fleet diverts to investigate. The course alterations will add a number of years to the total journey.
+    spades_4: Approaching the anomaly the fleet finds itself forcibly drawn towards it as exotic matter creates a harmonic interaction with materials embedded within the forward umbrella.
+    spades_5: After being pulled into the heart of the anomaly the fleet finds itself entering the Tau Ceti system, having made the journey within the span of one lifetime. The system is an awe-inspiring display of advanced technology with thousands of mega-structures and satellites arranged in intricate arrays. A signal reaches out to the Fleet, welcoming it to its new home before shutting off.
   personal_event_prompts:
+    2: A significant birthday that just isn’t the same without the other.
     3: A major holiday brings back memories of an event you’d forgotten about.
+    4: In these uncertain times the birth of a child brings joy and hope. How do you celebrate?
+    5: You recently marked a day of remembrance. Who were you thinking about?
+    6: You’ve had a rare day off. What did you do and why?
     7: Someone got married! Who was it and what do they mean to you?
+    8: You’ve received an unexpected promotion. What does your new list of responsibilities include?
+    9: You’ve finally read that classic book you always said you would. Did you enjoy it?
+    10: A reprimand at work. Did you deserve it or should somebody else have taken the blame?
+    jack: You feel the urge to finally apologise for a childhood indiscretion. What was it?
+    queen: A dream about the other person has left you wishing you could see them again.
+    king: You’ve had one of those days/ weeks/months and just need to get it off of your chest.
+    ace: The death of a family member or somebody you were close to has left you feeling raw and alone.
   messages_mailer:
     transmission:
       ending_notice: >
