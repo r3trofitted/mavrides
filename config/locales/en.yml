@@ -56,6 +56,11 @@ en:
     queen: A dream about the other person has left you wishing you could see them again.
     king: You’ve had one of those days/ weeks/months and just need to get it off of your chest.
     ace: The death of a family member or somebody you were close to has left you feeling raw and alone.
+  game_mailer:
+    game_starts_for_earther:
+      subject: A new game has started!
+    game_starts_for_explorer:
+      subject: A new game has started!
   messages_mailer:
     transmission:
       ending_notice: >

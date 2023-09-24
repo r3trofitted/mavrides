@@ -13,6 +13,9 @@ class Game < ApplicationRecord
   
   enum :status, %i(pending started ended), default: :pending
   
+  delegate :name, to: :earther, prefix: true
+  delegate :name, to: :explorer, prefix: true
+  
   def characters
     [earther, explorer]
   end

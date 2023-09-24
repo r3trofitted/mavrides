@@ -3,14 +3,7 @@ class GameMailer < ApplicationMailer
   
   default from: -> { game_email_address @game }
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.game_mailer.game_starts_for_explorer.subject
-  #
   def game_starts_for_explorer
-    @greeting = "Hi"
-
     mail to: @game.explorer.player_email
   end
 
