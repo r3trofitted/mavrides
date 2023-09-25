@@ -1,46 +1,54 @@
 abelar_and_philip_round_one:
   game: abelar_and_philip
   number: 1
-  earther_event: "7♠️"
-  explorer_event: "A♥️"
-  earther_hand: "K♠️,5♠️,8♣️,2♥️,J♦️"
-  explorer_hand: "Q♥️,7♠️,9♣️,5♥️,5♦️"
+  earther_event:
+  explorer_event:
+  earther_hand: "7♠️,8♣️,2♥️,J♦️"
+  explorer_hand: "7♠️,9♣️,A♥️,5♦️"
 
 ending_game_round_one:
   game: ending_game
   number: 1
-  earther_event: "3♠️"
+  earther_event:
+  explorer_event:
+  earther_hand: "7♠️,8♣️,2♥️,J♦️"
+  explorer_hand: "7♠️,9♣️,A♥️,5♦️"
+
+ending_game_round_two:
+  game: ending_game
+  number: 2
+  earther_event: "7♠️"
   explorer_event: "A♥️"
   earther_hand: "K♠️,5♠️,8♣️,2♥️,J♦️"
   explorer_hand: "Q♥️,7♠️,9♣️,5♥️,5♦️"
   
-ending_game_round_two:
+ending_game_round_three:
   game: ending_game
-  number: 2
+  number: 3
   earther_event: "K♠️"
   explorer_event: "5♦️"
   earther_hand: "Q♠️,5♠️,4♠️,8♣️,2♥️,J♦️"
   explorer_hand: "Q♥️,7♠️,9♣️,5♥️,4♦️,3♦️"
   
-ending_game_round_three:
+ending_game_round_four:
   game: ending_game
-  number: 3
+  number: 4
   earther_event: "Q♠️"
   explorer_event: "9♣️"
   earther_hand: "J♠️,5♠️,4♠️,2♠️,8♣️,2♥️,J♦️"
   explorer_hand: "Q♥️,7♠️,8♣️,7♣️,5♥️,4♦️,3♦️"
   
-ending_game_round_four:
+ending_game_round_five:
   game: ending_game
-  number: 4
+  number: 5
   earther_event: "J♠️"
   explorer_event: "Q♥️"
   earther_hand: "10♠️,6,♠️5♠️,4♠️,2♠️8♣️,2♥️,J♦️"
   explorer_hand: "9♥️,8♥️,7♠️,8♣️,7♣️,5♥️,4♦️,3♦️"
   
-ending_game_round_five:
+ending_game_round_six:
   game: ending_game
-  number: 5
+  number: 6
   earther_event: "10♠️"
   explorer_event: "7♠️"
   earther_hand: "9♠️,6♠️,5♠️4♠️,2♠️,8♣️,2♥️,J♦️"
