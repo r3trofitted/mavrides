@@ -1,4 +1,6 @@
-abelar_and_philip:
+starting_game:
+  status: <%= Game.statuses[:started] %>
+running_game:
   status: <%= Game.statuses[:started] %>
 ending_game:
   status: <%= Game.statuses[:started] %>

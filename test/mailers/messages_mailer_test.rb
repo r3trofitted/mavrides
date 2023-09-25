@@ -7,7 +7,7 @@ class MessagesMailerTest < ActionMailer::TestCase
              .transmission
     
     assert_equal "さようなら", mail.subject
-    assert_equal ["#{games(:abelar_and_philip).id}@mavrides.example"], mail.from
+    assert_equal ["#{games(:starting_game).id}@mavrides.example"], mail.from
     assert_equal ["vincent.o@mavrides.example"], mail.to
     
     body = mail.body.to_s.squish

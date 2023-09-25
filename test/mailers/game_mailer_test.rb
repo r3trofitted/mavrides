@@ -2,7 +2,7 @@ require "test_helper"
 
 class GameMailerTest < ActionMailer::TestCase
   setup do
-    @mailer = GameMailer.with game: games(:abelar_and_philip)
+    @mailer = GameMailer.with game: games(:starting_game)
   end
   
   test "game_starts_for_explorer" do
@@ -10,7 +10,7 @@ class GameMailerTest < ActionMailer::TestCase
     
     assert_equal "A new game has started!", mail.subject
     assert_equal ["bruce.s@mavrides.example"], mail.to
-    assert_equal ["#{games(:abelar_and_philip).id}@mavrides.example"], mail.from
+    assert_equal ["#{games(:starting_game).id}@mavrides.example"], mail.from
     assert_match <<~TXT.squish, mail.body.encoded.squish
       A new game has started! You, Abelar Lindsay, are the Explorer. You are one of the few, selected to represent humanity 
       on its maiden voyage to the stars. Though you will never know your distant destination, it is a prestigious 
@@ -36,7 +36,7 @@ class GameMailerTest < ActionMailer::TestCase
     
     assert_equal "A new game has started!", mail.subject
     assert_equal ["vincent.o@mavrides.example"], mail.to
-    assert_equal ["#{games(:abelar_and_philip).id}@mavrides.example"], mail.from
+    assert_equal ["#{games(:starting_game).id}@mavrides.example"], mail.from
     assert_match <<~TXT.squish, mail.body.encoded.squish
       A new game has started! You, Philip Constantine, are the Earther. You are one of the many thousands 
       whose application to the Fleet was unsuccessful. Like most of humanity you will live your life under 

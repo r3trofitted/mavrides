@@ -6,7 +6,7 @@ class MessagesMailboxTest < ActionMailbox::TestCase
   setup do
     ActionMailer::Base.deliveries.clear
     
-    @game = games(:abelar_and_philip)
+    @game = games(:starting_game)
   end
   
   test "bounce mail for an unknown game" do

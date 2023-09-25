@@ -1,11 +1,37 @@
 first_message:
-  game: abelar_and_philip
-  round: abelar_and_philip_round_one 
+  game: starting_game
+  round: starting_game_round_one 
   sender: abelar
   subject: さようなら
   content: >-
     This is it. We are off. To Tau Ceti, can you believe it?
     Even though I'll never see what's out there, I know.
+
+first_message_in_running_game:
+  game: running_game
+  round: running_game_round_one 
+  sender: abelar_in_running_game
+  subject: さようなら
+  content: >-
+    This is it. We are off. To Tau Ceti, can you believe it?
+    Even though I'll never see what's out there, I know.
+
+second_message_in_running_game:
+  game: running_game
+  round: running_game_round_one 
+  sender: philip_in_running_game
+  subject: Viso gero
+  content: >-
+    I'm still stuck here. Earth is not so bad, but I'll miss you – eventually ;-)
+
+third_message_in_running_game:
+  game: running_game
+  round: running_game_round_two
+  sender: abelar_in_running_game
+  subject: You'll never guess what happened
+  content: >-
+    … Or maybe you will. You tell me!
+
 second_to_last_message:
   game: ending_game
   round: ending_game_round_five

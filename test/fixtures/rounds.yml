@@ -1,10 +1,26 @@
-abelar_and_philip_round_one:
-  game: abelar_and_philip
+starting_game_round_one:
+  game: starting_game
   number: 1
   earther_event:
   explorer_event:
   earther_hand: "7♠️,8♣️,2♥️,J♦️"
   explorer_hand: "7♠️,9♣️,A♥️,5♦️"
+
+running_game_round_one:
+  game: running_game
+  number: 1
+  earther_event:
+  explorer_event:
+  earther_hand: "7♠️,8♣️,2♥️,J♦️"
+  explorer_hand: "7♠️,9♣️,A♥️,5♦️"
+
+running_game_round_two:
+  game: running_game
+  number: 2
+  earther_event: "7♠️"
+  explorer_event: "A♥️"
+  earther_hand: "K♠️,5♠️,8♣️,2♥️,J♦️"
+  explorer_hand: "Q♥️,7♠️,9♣️,5♥️,5♦️"
 
 ending_game_round_one:
   game: ending_game
