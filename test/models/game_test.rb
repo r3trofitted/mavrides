@@ -4,7 +4,7 @@ class GameTest < ActiveSupport::TestCase
   include ActionMailer::TestHelper
   
   test "#starts! raises if the game is already started" do
-    assert_raises { games(:abelar_and_philip).starts! }
+    assert_raises { games(:starting_game).starts! }
   end
   
   test "#starts creates the first round" do
@@ -50,7 +50,7 @@ class GameTest < ActiveSupport::TestCase
   end
   
   test "a transmission is sent to forward a message upon reception" do
-    game    = games(:abelar_and_philip)
+    game    = games(:starting_game)
     message = Message.new(sender: game.earther, subject: "👋", content: "❤️")
     
     assert_enqueued_email_with MessagesMailer, :transmission, params: { message: message } do
@@ -59,7 +59,7 @@ class GameTest < ActiveSupport::TestCase
   end
   
   test "a game ends when it receives a message ending with [Connection Lost]" do
-    game = games(:abelar_and_philip)
+    game = games(:starting_game)
     
     message = Message.new(sender: game.earther, subject: "farewell", content: <<~TXT)
       This is it.
