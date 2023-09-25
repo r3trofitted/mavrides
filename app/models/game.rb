@@ -55,7 +55,7 @@ class Game < ApplicationRecord
     filtered_suits = suit ? [suit] : Card::SUITS
     
     rounds
-      .map { |r| r.event_for character }
+      .filter_map { |r| r.event_for character }
       .filter { |r| r.suit.in? filtered_suits }
   end
   

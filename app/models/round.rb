@@ -10,15 +10,12 @@ class Round < ApplicationRecord
   serialize :explorer_hand, coder: Hand, type: Hand
   
   def self.build_first(game:)
-    round_zero = Round.new do |r|
+    Round.new do |r|
       r.game = game
-      r.number = 0
+      r.number = 1
       r.earther_hand = Card.one_of_each_suit
       r.explorer_hand = Card.one_of_each_suit
-      r.readonly!
     end
-    
-    round_zero.next
   end
   
   def earther_hand=(value)
