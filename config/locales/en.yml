@@ -21,27 +21,27 @@ en:
       spades_3: Earth and the Solar Colonies agree to create a second fleet, utilising the experimental cryo-sleep technology to push beyond the limits of the original Generation Fleet.
       spades_4: Following a system wide lottery you are offered a position aboard the Cryo Fleet as part of humanity’s second solar exodus.
       spades_5: The Cryo Fleet prepares for launch and those chosen to make the journey say their final goodbyes before departing for the staging post in orbit around Jupiter.
-  explorer:
-    clubs_1: A weak, directional signal is detected originating from an apparently empty region of space. The signal is heavily distorted and largely undecipherable.
-    clubs_2: On-board systems finally decode a series of instructions embedded within the Signal and automatically begin fabrication of a prototype faster than light jump drive. The crew are only alerted to its existence following the completion of the prototype drive.
-    clubs_3: After a series of initial failures an uncrewed shuttle makes the first successful jump, travelling 0.1 light years in less than 3 hours.
-    clubs_4: ThefirstseriesofcrewedjumpsreachLuyten726-8. Subsequent attempts to jump to Tau Ceti or back to Sol are blocked by distortions in space-time.
-    clubs_5: Buoyed by the new jump drives the fleet votes to abandon its target of Tau Ceti and explore other habitable systems. Elements of the fleet depart in all directions and humanity becomes a galactic civilisation.
-    diamonds_1: One of the gigantic umbrella shield ships suffers damage after collision with an object that failed to register on active scans. The science directorate theorises that dark matter may have been involved.
-    diamonds_2: A dark matter micro-meteorite shower penetrates the umbrella shield and destroys the Archimedes, an engineering support ship. All hands on board are lost and the wreckage is left behind by the flotilla.
-    diamonds_3: Damage to the main antenna results in the loss of communication with the other two umbrella formations. The rear mounted Earth-Fleet communication laser remains functional. For now.
-    diamonds_4: Damage to the umbrella ship sustained during the earlier meteorite showers turns out to have been more substantial than originally believed and the vessel comes apart mid-flight. Under relentless bombardment the Fleet draws in on itself, docking support ships to the main vessel in a last ditch effort to protect the bulk of the crew .
-    diamonds_5: Underthepressureofcontinuedmeteoriteshowers critical systems stutter on and off. Life support fails for close to an hour before returning at less than half the required levels.
-    hearts_1: Evidence comes to light that a significant proportion of the command crew received commissions thanks to family connections and lack the qualifications mandated by their rank.
-    hearts_2: A mass demonstration against corruption ends in violence when security forces are deployed to enforce a curfew. Talk of a general strike spreads amongst the crew.
-    hearts_3: TheFleetAdmiral,implicatedinthegrowingscandal, is found dead in their cabin. While the official report lists a heart attack as the cause rumours circulate about whether they committed suicide or were assassinated.
-    hearts_4: In light of growing civil unrest checkpoints are erected between each major compartment, restricting passage by off duty crew members. In response, engineering, hydroponics, and maintenance crews down tools.
-    hearts_5: Security forces execute the command crew, seize control of the bridge and declare martial law. As fighting erupts throughout the ship a final, desperate comm burst is sent into the dark.
-    spades_1: Observatory stations detect an anomaly consistent with states of matter previously confined to theoretical equations.
-    spades_2: Further observations suggest the signal to be artificial in nature and within reach of the fleet.
-    spades_3: Following a ship wide vote the fleet diverts to investigate. The course alterations will add a number of years to the total journey.
-    spades_4: Approaching the anomaly the fleet finds itself forcibly drawn towards it as exotic matter creates a harmonic interaction with materials embedded within the forward umbrella.
-    spades_5: After being pulled into the heart of the anomaly the fleet finds itself entering the Tau Ceti system, having made the journey within the span of one lifetime. The system is an awe-inspiring display of advanced technology with thousands of mega-structures and satellites arranged in intricate arrays. A signal reaches out to the Fleet, welcoming it to its new home before shutting off.
+    explorer:
+      clubs_1: A weak, directional signal is detected originating from an apparently empty region of space. The signal is heavily distorted and largely undecipherable.
+      clubs_2: On-board systems finally decode a series of instructions embedded within the Signal and automatically begin fabrication of a prototype faster than light jump drive. The crew are only alerted to its existence following the completion of the prototype drive.
+      clubs_3: After a series of initial failures an uncrewed shuttle makes the first successful jump, travelling 0.1 light years in less than 3 hours.
+      clubs_4: ThefirstseriesofcrewedjumpsreachLuyten726-8. Subsequent attempts to jump to Tau Ceti or back to Sol are blocked by distortions in space-time.
+      clubs_5: Buoyed by the new jump drives the fleet votes to abandon its target of Tau Ceti and explore other habitable systems. Elements of the fleet depart in all directions and humanity becomes a galactic civilisation.
+      diamonds_1: One of the gigantic umbrella shield ships suffers damage after collision with an object that failed to register on active scans. The science directorate theorises that dark matter may have been involved.
+      diamonds_2: A dark matter micro-meteorite shower penetrates the umbrella shield and destroys the Archimedes, an engineering support ship. All hands on board are lost and the wreckage is left behind by the flotilla.
+      diamonds_3: Damage to the main antenna results in the loss of communication with the other two umbrella formations. The rear mounted Earth-Fleet communication laser remains functional. For now.
+      diamonds_4: Damage to the umbrella ship sustained during the earlier meteorite showers turns out to have been more substantial than originally believed and the vessel comes apart mid-flight. Under relentless bombardment the Fleet draws in on itself, docking support ships to the main vessel in a last ditch effort to protect the bulk of the crew .
+      diamonds_5: Underthepressureofcontinuedmeteoriteshowers critical systems stutter on and off. Life support fails for close to an hour before returning at less than half the required levels.
+      hearts_1: Evidence comes to light that a significant proportion of the command crew received commissions thanks to family connections and lack the qualifications mandated by their rank.
+      hearts_2: A mass demonstration against corruption ends in violence when security forces are deployed to enforce a curfew. Talk of a general strike spreads amongst the crew.
+      hearts_3: TheFleetAdmiral,implicatedinthegrowingscandal, is found dead in their cabin. While the official report lists a heart attack as the cause rumours circulate about whether they committed suicide or were assassinated.
+      hearts_4: In light of growing civil unrest checkpoints are erected between each major compartment, restricting passage by off duty crew members. In response, engineering, hydroponics, and maintenance crews down tools.
+      hearts_5: Security forces execute the command crew, seize control of the bridge and declare martial law. As fighting erupts throughout the ship a final, desperate comm burst is sent into the dark.
+      spades_1: Observatory stations detect an anomaly consistent with states of matter previously confined to theoretical equations.
+      spades_2: Further observations suggest the signal to be artificial in nature and within reach of the fleet.
+      spades_3: Following a ship wide vote the fleet diverts to investigate. The course alterations will add a number of years to the total journey.
+      spades_4: Approaching the anomaly the fleet finds itself forcibly drawn towards it as exotic matter creates a harmonic interaction with materials embedded within the forward umbrella.
+      spades_5: After being pulled into the heart of the anomaly the fleet finds itself entering the Tau Ceti system, having made the journey within the span of one lifetime. The system is an awe-inspiring display of advanced technology with thousands of mega-structures and satellites arranged in intricate arrays. A signal reaches out to the Fleet, welcoming it to its new home before shutting off.
   personal_event_prompts:
     2: A significant birthday that just isn’t the same without the other.
     3: A major holiday brings back memories of an event you’d forgotten about.
@@ -63,6 +63,7 @@ en:
       subject: A new game has started!
   messages_mailer:
     transmission:
+      events_intro: "Since your last message, the following events occured:"
       ending_notice: >
         This event marks the end of the game. Send a final message to %{recipient}; this
         message will not be distorted. Finish the message with [Connection Lost].

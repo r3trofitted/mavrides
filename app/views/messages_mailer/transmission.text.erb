@@ -1,6 +1,10 @@
-<%= t @transmission.game_event_prompt, scope: :game_event_prompts %>
+<% if @transmission.has_events? %>
+  <%= t ".events_intro" %>
+  
+  <%= t @transmission.game_event_prompt, scope: :game_event_prompts %>
 
-<%= t @transmission.personal_event_prompt, scope: :personal_event_prompts %>
+  <%= t @transmission.personal_event_prompt, scope: :personal_event_prompts %>
+<% end %>
 
 <%= t(".ending_notice", recipient: @transmission.recipient_name) if @transmission.second_to_last? %>
 
