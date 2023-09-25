@@ -2,8 +2,13 @@ class Transmission
   delegate_missing_to :@message # TODO: restrict to what is really needed?
   
   def initialize(message)
-    @message = message
+    @message    = message
+    @event      = round.event_for(recipient)
     @distortion = BasicDistortion.new
+  end
+  
+  def has_events?
+    @event.present?
   end
   
   def second_to_last?
@@ -11,25 +16,33 @@ class Transmission
   end
     
   def game_event_prompt
-    :"#{recipient_role}.#{major_event_table}_#{major_event_progress}" # e.g. :explorer.spades_3
+    :"#{recipient_role}.#{major_event_table}_#{major_event_progress}" if has_events? # e.g. :explorer.spades_3
   end
   
   def personal_event_prompt
-    round.event_for(recipient).value # e.g. :ace
+    @event.value if has_events? # e.g. :ace
   end
   
   def content
-    @distortion.apply @message.content, game.events_for(sender).map(&:value)
+    @distortion.apply @message.content, distortion_level
   end
   
   private
   
   def major_event_table
-    round.event_for(recipient).suit
+    @event.suit
   end
   
   def major_event_progress
-    game.events_for(recipient, suit: major_event_table).count
+    if has_events?
+      game.events_for(recipient, suit: @event.suit).count
+    else
+      0
+    end
+  end
+  
+  def distortion_level
+    game.events_for(sender).map(&:value)
   end
   
   class BasicDistortion
