@@ -1,19 +1,19 @@
 require "test_helper"
 
 class RoundTest < ActiveSupport::TestCase
-  test ".build_first builds the first round for a given game, with events drawn and hands refilled" do
-    round = Round.build_first game: games(:abelar_and_philip)
+  test ".build_first builds the first round for a given game, with no events drawn and basic hands" do
+    round = Round.build_first game: games(:starting_game)
     
     assert_equal 1, round.number
-    refute_nil round.earther_event
-    refute_nil round.explorer_event
-    assert_equal 5, round.earther_hand.count # 4 originally, minus 1 for the event, plus 2 for the refill
-    assert_equal 5, round.explorer_hand.count # 4 originally, minus 1 for the event, plus 2 for the refill
+    assert_nil round.earther_event
+    assert_nil round.explorer_event
+    assert_equal 4, round.earther_hand.count
+    assert_equal 4, round.explorer_hand.count
   end
   
   test "#next builds a new Round with 1 event drawn and 2 cards added to each hand for each player" do
     round = Round.new do |r|
-      r.game           = games(:abelar_and_philip)
+      r.game           = games(:starting_game)
       r.number         = 2
       r.earther_event  = nil # unnecessary here
       r.explorer_event = nil # unnecessary here
@@ -23,7 +23,7 @@ class RoundTest < ActiveSupport::TestCase
     
     new_round = round.next
     
-    assert_equal rounds(:abelar_and_philip_round_one).game, new_round.game
+    assert_equal rounds(:starting_game_round_one).game, new_round.game
     assert_equal 3, new_round.number
     assert_equal Card.new(value: 2, suit: :clubs), new_round.earther_event      # only card in the earther's hand
     assert_equal Card.new(value: :ace, suit: :spades), new_round.explorer_event # only card in the explorer's hand
@@ -33,7 +33,7 @@ class RoundTest < ActiveSupport::TestCase
   
   test "serializing events" do
     event = Card.new value: :ace, suit: :spades
-    round = Round.new game: games(:abelar_and_philip), number: 3, earther_event: event
+    round = Round.new game: games(:starting_game), number: 3, earther_event: event
     
     assert_kind_of Card, round.earther_event
     assert round.save
@@ -41,15 +41,15 @@ class RoundTest < ActiveSupport::TestCase
   
   test "serializing hands" do
     hand  = [Card.new(value: :ace, suit: :spades), Card.new(value: :king, suit: :clubs)]
-    round = Round.new game: games(:abelar_and_philip), number: 3, explorer_hand: hand
+    round = Round.new game: games(:starting_game), number: 3, explorer_hand: hand
     
     assert_includes round.explorer_hand, Card.new(value: :ace, suit: :spades)
     assert_includes round.explorer_hand, Card.new(value: :king, suit: :clubs)
     assert round.save
   end
   
-  test "returning the hand for a given Player" do
-    round    = rounds(:abelar_and_philip_round_one)
+  test "returning the event for a given Player" do
+    round    = rounds(:running_game_round_two)
     earther  = characters(:philip)
     explorer = characters(:abelar)
     
@@ -57,8 +57,8 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal Card.new(value: :ace, suit: :hearts), round.event_for(explorer)
   end
   
-  test "returning the event for a given Player" do
-    round    = rounds(:abelar_and_philip_round_one)
+  test "returning the hand for a given Player" do
+    round    = rounds(:running_game_round_two)
     earther  = characters(:philip)
     explorer = characters(:abelar)
     
