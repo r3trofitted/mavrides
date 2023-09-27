@@ -24,10 +24,10 @@ class Transmission
   end
   
   def content
-    @distortion.apply @message.content, distortion_level
+    @distortion.apply @message.content, distortion_factors
   end
   
-  def distortion_level
+  def distortion_factors
     game.rounds.where(number: [1..round_number]).filter_map { |r| r.event_for(sender)&.value }
   end
   
@@ -62,13 +62,13 @@ class Transmission
       ace:   [nil, ["Mm", "Ee"]],
     }
     
-    def apply(text, event_values)
+    def apply(text, factors)
       text = text.dup
       
-      event_values.tally.each do |card, occurences|
+      factors.tally.each do |factor, occurences|
         index = occurences > 1 ? 1 : 0
         
-        if substitution = SUBSTITUTIONS.dig(card, index)
+        if substitution = SUBSTITUTIONS.dig(factor, index)
           text.tr! *substitution
         end
       end
