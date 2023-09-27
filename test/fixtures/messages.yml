@@ -1,6 +1,6 @@
 first_message:
   game: starting_game
-  round: starting_game_round_one 
+  round: starting_game_round_one
   sender: abelar
   subject: さようなら
   content: >-
@@ -9,7 +9,7 @@ first_message:
 
 first_message_in_running_game:
   game: running_game
-  round: running_game_round_one 
+  round: running_game_round_one
   sender: abelar_in_running_game
   subject: さようなら
   content: >-
@@ -18,7 +18,7 @@ first_message_in_running_game:
 
 second_message_in_running_game:
   game: running_game
-  round: running_game_round_one 
+  round: running_game_round_one
   sender: philip_in_running_game
   subject: Viso gero
   content: >-
