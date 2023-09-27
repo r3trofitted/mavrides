@@ -27,6 +27,10 @@ class Transmission
     @distortion.apply @message.content, distortion_level
   end
   
+  def distortion_level
+    game.rounds.where(number: [1..round_number]).filter_map { |r| r.event_for(sender)&.value }
+  end
+  
   private
   
   def major_event_table
@@ -39,10 +43,6 @@ class Transmission
     else
       0
     end
-  end
-  
-  def distortion_level
-    game.events_for(sender).map(&:value)
   end
   
   class BasicDistortion
