@@ -1,6 +1,6 @@
 class GameMailer < ApplicationMailer
   before_action :set_game
-  
+
   default from: -> { game_email_address @game }
 
   def game_starts_for_explorer
@@ -17,9 +17,9 @@ class GameMailer < ApplicationMailer
 
     mail to: @game.earther.player_email
   end
-  
+
   private
-  
+
   def set_game
     @game = params[:game]
   end

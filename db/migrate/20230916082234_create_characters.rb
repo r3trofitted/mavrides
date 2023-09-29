@@ -8,7 +8,7 @@ class CreateCharacters < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
-    
+
     remove_foreign_key "messages", "players", column: "sender_id"
     add_foreign_key "messages", "characters", column: "sender_id"
   end
