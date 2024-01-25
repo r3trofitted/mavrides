@@ -9,7 +9,10 @@ class Game < ApplicationRecord
       last
     end
   end
-  has_many :messages, before_add: :set_round, after_add: [:update_rounds, :transmit_message] # TODO: validate coherence of the message's round
+
+  # OPTIMIZE: this is at the core of the game loop. Maybe it should be in its own model, instead of existing only as callbacks?
+  # TODO: validate coherence of the message's round
+  has_many :messages, before_add: :set_round, after_add: [:update_rounds, :transmit_message]
 
   enum :status, %i(pending started ended), default: :pending
 
