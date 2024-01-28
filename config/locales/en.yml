@@ -84,4 +84,12 @@ en:
       earther_instructions: >
         The game has started. Reply to %{sender} with a message of congratulations that wishes them a safe
         journey while also hinting at how you feel about not being chosen to join the Fleet.
+      game_ended_notice: >
+        Your connection with %{sender} has faded to the point that they no longer feel
+        the drive to maintain it with you. Maybe you feel the same?
+
+        This is the end of the game. Feel free to reach out to %{other_player} to debrief
+        and discuss the feelings that it invoked.
+
+        Thanks for playing!
       reply_notice: "(You can now reply to %{sender}, using events the above for inspiration.)"

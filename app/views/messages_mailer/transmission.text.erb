@@ -23,7 +23,9 @@
 
 <% end %>
 <%=
-  if @transmission.second_to_last?
+  if @transmission.final?
+    t ".game_ended_notice", sender: @transmission.sender_name, other_player: @transmission.other_player_name
+  elsif @transmission.second_to_last?
     t ".ending_notice", sender: @transmission.sender_name
   elsif @transmission.has_events?
     t ".reply_notice", sender: @transmission.sender_name

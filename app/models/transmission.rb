@@ -43,6 +43,10 @@ class Transmission
     game.rounds.where(number: [1..round_number]).filter_map { |r| r.event_for(sender)&.value }
   end
 
+  def other_player_name
+    sender.player.name
+  end
+
   private
 
   def next_round

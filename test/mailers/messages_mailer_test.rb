@@ -64,6 +64,32 @@ class MessagesMailerTest < ActionMailer::TestCase
     ENDING_NOTICE
   end
 
+  test "transmission when one player decides to end the game" do
+    message = Message.create! do |m|
+      m.game    = games(:running_game)
+      m.round   = rounds(:running_game_round_two)
+      m.sender  = characters(:philip) # PHilippe Constantine, played by Vincent O.
+      m.subject = "This is it"
+      m.content = <<~TXT
+        I just don't feel like keeping writing to you. We've grown so far apart.
+
+        [Connection Lost]
+      TXT
+    end
+
+    mail = MessagesMailer.with(message: message).transmission
+
+    assert_match <<~GAME_ENDED_NOTICE.squish, mail.body.to_s.squish
+      Your connection with Philip Constantine has faded to the point that they no longer feel
+      the drive to maintain it with you. Maybe you feel the same?
+
+      This is the end of the game. Feel free to reach out to Vincent O. to debrief
+      and discuss the feelings that it invoked.
+
+      Thanks for playing!
+    GAME_ENDED_NOTICE
+  end
+
   test "message distortion" do
     message = Message.create! do |m|
       m.game    = games(:running_game)
