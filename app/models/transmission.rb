@@ -3,7 +3,7 @@ class Transmission
 
   def initialize(message)
     @message    = message
-    @event      = round.event_for(recipient)
+    @event      = recipient.earther? ? round.earther_event : next_round&.explorer_event
     @distortion = BasicDistortion.new
   end
 
@@ -12,7 +12,7 @@ class Transmission
   end
 
   def very_first?
-    sent_by?(game.explorer) && round_number == 1
+    sender.explorer? && round_number == 1
   end
 
   def second_to_last?
@@ -44,6 +44,10 @@ class Transmission
   end
 
   private
+
+  def next_round
+    game.rounds.find_by(number: round_number + 1)
+  end
 
   def major_event_table
     @event.suit

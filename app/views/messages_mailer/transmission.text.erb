@@ -22,5 +22,10 @@
 <%= t @transmission.personal_event_prompt, scope: :personal_event_prompts %>
 
 <% end %>
-
-<%= t(".ending_notice", sender: @transmission.sender_name) if @transmission.second_to_last? %>
+<%=
+  if @transmission.second_to_last?
+    t ".ending_notice", sender: @transmission.sender_name
+  elsif @transmission.has_events?
+    t ".reply_notice", sender: @transmission.sender_name
+  end
+%>

@@ -23,7 +23,7 @@ class Message < ApplicationRecord
   end
 
   def recipient
-    sent_by?(game.explorer) ? game.earther : game.explorer
+    sender.explorer? ? game.earther : game.explorer
   end
 
   def final?
