@@ -9,7 +9,7 @@ class MessagesMailbox < ApplicationMailbox
   def process
     logger.debug "Processing inbound mail"
 
-    content = mail.body.to_s
+    content = mail.body.to_s.force_encoding(Encoding::UTF_8) # SMELL: not sure if this is safe (see https://github.com/mikel/mail/issues/1413)
 
     message = Message.new(sender:, content:, subject: mail.subject)
 

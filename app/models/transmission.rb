@@ -11,6 +11,10 @@ class Transmission
     @event.present?
   end
 
+  def very_first?
+    sent_by?(game.explorer) && round_number == 1
+  end
+
   def second_to_last?
     major_event_progress > 4
   end
@@ -25,6 +29,14 @@ class Transmission
 
   def content
     @distortion.apply @message.content, distortion_factors
+  end
+
+  def lag
+    2.weeks # SLIME
+  end
+
+  def elapsed_time
+    lag + 1.week # SLIME
   end
 
   def distortion_factors

@@ -7,6 +7,7 @@ class Message < ApplicationRecord
   validates_presence_of :subject, :content
 
   delegate :role, :name, to: :recipient, prefix: true
+  delegate :role, :name, to: :sender, prefix: true
   delegate :number, to: :round, prefix: true
 
   def sent_by?(character)

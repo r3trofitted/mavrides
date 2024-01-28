@@ -16,6 +16,7 @@ class MessagesMailerTest < ActionMailer::TestCase
       This is it. We are off. To Tau Ceti, can you believe it? Even though I'll never see what's out there, I know.
     MESSAGE
 
+    assert_match "The game has started. Reply to Abelar Lindsay with a message of congratulations", body
     refute_match "Since your last message, the following events occured:", body
   end
 
@@ -34,16 +35,20 @@ class MessagesMailerTest < ActionMailer::TestCase
       … Or maybe you will. You tell me!
     MESSAGE
 
-    assert_match "Since your last message, the following events occured:", body
+    refute_match "The game has started. Reply to Philip with a message of congratulations", body
+
+    assert_match <<~LIGHTSPEED_LAG.squish, body
+      21 days have passed since the departure of the fleet, and it's been 14 days since you last wrote Abelar Lindsay.
+    LIGHTSPEED_LAG
 
     # the Earther's Terrestrial Event is the 1st from the spades table (cf. running_game_round_two fixtures)
     assert_match <<~GAME_EVENT_PROMPT.squish, body
-      The first successful demonstration of cryo-sleep technology on rodents raises the potential for human hibernation.
+      In the meantime, the first successful demonstration of cryo-sleep technology on rodents raises the potential for human hibernation.
     GAME_EVENT_PROMPT
 
     # the Earther's Personal Event is "7" (cf. running_game_round_two fixtures)
     assert_match <<~PERSONAL_EVENT_PROMPT.squish, body
-      Someone got married! Who was it and what do they mean to you?
+      As for yourself, someone got married! Who was it and what do they mean to you?
     PERSONAL_EVENT_PROMPT
   end
 
@@ -54,7 +59,7 @@ class MessagesMailerTest < ActionMailer::TestCase
                 .transmission
 
     assert_match <<~ENDING_NOTICE.squish, mail.body.to_s.squish
-      This event marks the end of the game. Send a final message to #{message.recipient_name}; this message will
+      This event marks the end of the game. Send a final message to Abelar Lindsay; this message will
       not be distorted. Finish the message with [Connection Lost].
     ENDING_NOTICE
   end

@@ -1,11 +1,26 @@
-<% if @transmission.has_events? %>
-  <%= t ".events_intro" %>
-  
-  <%= t @transmission.game_event_prompt, scope: :game_event_prompts %>
+<%= @transmission.content %>
 
-  <%= t @transmission.personal_event_prompt, scope: :personal_event_prompts %>
+-------
+<% if @transmission.very_first? %>
+
+<%= t ".earther_instructions", sender: @transmission.sender_name %>
+
+<%= t "intro", scope: :start_prompts %>
+
+<%= t @transmission.recipient_role, scope: :start_prompts %>
+
+<% elsif @transmission.has_events? %>
+
+<%= t ".events_intro",
+      lag: time_ago_in_words(@transmission.lag.ago),
+      elapsed_time: time_ago_in_words(@transmission.elapsed_time.ago),
+      sender: @transmission.sender_name
+%>
+
+<%= t @transmission.game_event_prompt, scope: :game_event_prompts %>
+
+<%= t @transmission.personal_event_prompt, scope: :personal_event_prompts %>
+
 <% end %>
 
-<%= t(".ending_notice", recipient: @transmission.recipient_name) if @transmission.second_to_last? %>
-
-<%= @transmission.content %>
+<%= t(".ending_notice", sender: @transmission.sender_name) if @transmission.second_to_last? %>
