@@ -1,1 +1,46 @@
-/* Application styles */
+:root {
+  /* palette inspired by https://colorkit.co/palette/33322e-3d4748-475e64-4e757e-578e9b-5da7ba-62bed9-b2dfeb-d7edf3-ecf7f8/ */
+  --clr-neutral-900: #060b0b;
+  --clr-neutral-800: #273538;
+  --clr-neutral-700: #475e64;
+  --clr-neutral-600: #4e757e;
+  --clr-neutral-500: #578e9b;
+  --clr-neutral-400: #5da7ba;
+  --clr-neutral-300: #62bed9;
+  --clr-neutral-200: #b2dfeb;
+  --clr-neutral-100: #ecf7f8;
+
+  /* typescale.com – major third */
+  --fs-300: 1rem;
+  --fs-400: 1.25rem;
+  --fs-800: 3.052rem;
+
+  --ff-body: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+}
+
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--clr-neutral-900);
+  color: var(--clr-neutral-100);
+  font-size: var(--fs-300);
+  font-family: var(--ff-body);
+}
+
+p {
+  display: grid;
+  height: 100vh;
+  width: 100wh;
+  place-items: center;
+  font-size: var(--fs-800);
+}
