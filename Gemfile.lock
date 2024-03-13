@@ -281,6 +281,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    solid_queue (0.2.2)
+      rails (~> 7.1)
     sqlite3 (1.7.2-aarch64-linux)
     sqlite3 (1.7.2-arm-linux)
     sqlite3 (1.7.2-arm64-darwin)
@@ -342,6 +344,7 @@ DEPENDENCIES
   redis (>= 4.0.1)
   rubocop-rails-omakase (~> 1.0)
   selenium-webdriver
+  solid_queue
   sqlite3 (~> 1.7)
   stimulus-rails
   turbo-rails
