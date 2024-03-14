@@ -1,10 +1,10 @@
-abelar:
+abelar_in_starting_game:
   game: starting_game
   player: bruce
   name: Abelar Lindsay
   role: explorer
 
-philip:
+philip_in_starting_game:
   game: starting_game
   player: vincent
   name: Philip Constantine
@@ -15,7 +15,7 @@ abelar_in_running_game:
   player: bruce
   name: Abelar Lindsay
   role: explorer
-  
+
 philip_in_running_game:
   game: running_game
   player: vincent
@@ -27,7 +27,7 @@ abelar_in_ending_game:
   player: bruce
   name: Abelar Lindsay
   role: explorer
-  
+
 philip_in_ending_game:
   game: ending_game
   player: vincent

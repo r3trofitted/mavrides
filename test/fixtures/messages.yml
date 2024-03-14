@@ -1,7 +1,7 @@
 first_message:
   game: starting_game
   round: starting_game_round_one
-  sender: abelar
+  sender: abelar_in_starting_game
   subject: さようなら
   content: >-
     This is it. We are off. To Tau Ceti, can you believe it?

@@ -6,7 +6,9 @@ class GamesMailbox < ApplicationMailbox
 
   def process
     # TODO: checks & validations
-    Game.prepare earther_player:, explorer_player:, earther_name:, explorer_name:
+    game = Game.prepare(earther_player:, explorer_player:, earther_name:, explorer_name:)
+
+    game.starts! if game.ready_to_start?
   end
 
   private

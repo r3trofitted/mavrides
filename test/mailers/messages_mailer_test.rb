@@ -68,7 +68,7 @@ class MessagesMailerTest < ActionMailer::TestCase
     message = Message.create! do |m|
       m.game    = games(:running_game)
       m.round   = rounds(:running_game_round_two)
-      m.sender  = characters(:philip) # PHilippe Constantine, played by Vincent O.
+      m.sender  = characters(:philip_in_running_game) # PHilippe Constantine, played by Vincent O.
       m.subject = "This is it"
       m.content = <<~TXT
         I just don't feel like keeping writing to you. We've grown so far apart.
@@ -94,7 +94,7 @@ class MessagesMailerTest < ActionMailer::TestCase
     message = Message.create! do |m|
       m.game    = games(:running_game)
       m.round   = rounds(:running_game_round_two)
-      m.sender  = characters(:philip)
+      m.sender  = characters(:philip_in_running_game)
       m.subject = "Throwing rice!"
       m.content = "Big news, you will never believe it: my brother got married!"
     end

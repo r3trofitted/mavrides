@@ -48,7 +48,9 @@ class ExampleOfPlayTest < ActionDispatch::IntegrationTest
   setup do
     ActionMailer::Base.deliveries.clear
 
-    @game = Game.new id: 20090925, earther: characters(:philip), explorer: characters(:abelar)
+    @game = Game.new id: 20090925,
+                     earther: characters(:philip_in_starting_game),
+                     explorer: characters(:abelar_in_starting_game)
 
     Round.include RoundStubs
     RoundStubs.turn_on

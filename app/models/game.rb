@@ -1,8 +1,8 @@
 class Game < ApplicationRecord
-  has_one :earther, -> { where role: "earther" }, class_name: "Character"
-  has_one :explorer, -> { where role: "explorer" }, class_name: "Character"
-  has_one :earther_player, through: :earther
-  has_one :explorer_player, through: :player
+  has_one :earther, -> { earther }, class_name: "Character"
+  has_one :explorer, -> { explorer }, class_name: "Character"
+  has_one :earther_player, through: :earther, source: :player
+  has_one :explorer_player, through: :explorer, source: :player
 
   has_many :rounds, -> { order(number: :asc) } do
     def current
@@ -16,20 +16,41 @@ class Game < ApplicationRecord
 
   enum :status, %i(pending started ended), default: :pending
 
+  validates_presence_of :earther, :explorer
+  validates_absence_of :rounds, on: :game_start
+
   delegate :name, to: :earther, prefix: true
   delegate :name, to: :explorer, prefix: true
 
-  # SMELL: the hoops we have to go trough to have a new pending game with identified players but one
-  # unknown character name reveals an issue in the architecture.
+  accepts_nested_attributes_for :earther, :explorer, update_only: true
+
   def self.prepare(earther_player:, explorer_player:, earther_name: nil, explorer_name: nil)
-    create do |g|
-      Character.create!(game: g, role: "earther", player: earther_player, name: earther_name.presence || "[unknown]")
-      Character.create!(game: g, role: "explorer", player: explorer_player, name: explorer_name.presence || "[unknown]")
+    pending_games = pending.played_by(as_earther: earther_player, as_explorer: explorer_player)
+    # TODO: error if more than 1 (“+sole_if_exists+”)
+
+    if game = pending_games.first
+      game.update earther_attributes: { name: earther_name }.compact_blank!,
+                  explorer_attributes: { name: explorer_name }.compact_blank!
+    else
+      game = create earther_attributes: { name: earther_name, player: earther_player },
+                    explorer_attributes: { name: explorer_name, player: explorer_player }
     end
+
+    game
+  end
+
+  def self.played_by(as_earther:, as_explorer:)
+    self
+      .joins(:earther_player, :explorer_player)
+      .where(earther_player: { id: as_earther.id }, explorer_player: { id: as_explorer.id })
   end
 
   def characters
     [earther, explorer]
+  end
+
+  def ready_to_start?
+    pending? && valid?(:game_start)
   end
 
   def starts!

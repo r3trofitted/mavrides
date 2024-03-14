@@ -50,8 +50,8 @@ class RoundTest < ActiveSupport::TestCase
 
   test "returning the event for a given Player" do
     round    = rounds(:running_game_round_two)
-    earther  = characters(:philip)
-    explorer = characters(:abelar)
+    earther  = characters(:philip_in_running_game)
+    explorer = characters(:abelar_in_running_game)
 
     assert_equal Card.new(value: 7, suit: :spades), round.event_for(earther)
     assert_equal Card.new(value: :ace, suit: :hearts), round.event_for(explorer)
@@ -59,8 +59,8 @@ class RoundTest < ActiveSupport::TestCase
 
   test "returning the hand for a given Player" do
     round    = rounds(:running_game_round_two)
-    earther  = characters(:philip)
-    explorer = characters(:abelar)
+    earther  = characters(:philip_in_running_game)
+    explorer = characters(:abelar_in_running_game)
 
     # Using the dumped values for ease here
     assert_equal "8♣️,J♦️,2♥️,5♠️,K♠️", Hand.dump(round.hand_of(earther))

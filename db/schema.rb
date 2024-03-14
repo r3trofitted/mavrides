@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_03_13_105342) do
+ActiveRecord::Schema[7.2].define(version: 2024_03_14_210841) do
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
@@ -51,8 +51,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_03_13_105342) do
   create_table "characters", force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "game_id", null: false
-    t.string "name", null: false
-    t.string "role", null: false
+    t.string "name"
+    t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_characters_on_game_id"

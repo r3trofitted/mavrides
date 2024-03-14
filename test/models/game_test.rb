@@ -3,12 +3,43 @@ require "test_helper"
 class GameTest < ActiveSupport::TestCase
   include ActionMailer::TestHelper
 
+  setup do
+    @philip = characters(:philip_in_starting_game)
+    @abelar = characters(:abelar_in_starting_game)
+  end
+
+  test ".prepare creates a new game if none is pending for the players" do
+    assert_difference -> { Game.pending.count } do
+      Game.prepare earther_player: players(:vincent), explorer_player: players(:bruce), earther_name: "Philip"
+    end
+
+    game = Game.pending.last
+    assert_equal "Philip", game.earther.name
+    assert_nil game.explorer.name
+    assert_equal players(:vincent), game.earther_player
+    assert_equal players(:bruce), game.explorer_player
+  end
+
+  test ".prepare updates the characters if one is already pending for the players" do
+    game = Game.pending.create! earther_player: players(:vincent), explorer_player: players(:bruce)
+    assert_nil game.explorer.name
+
+    assert_no_difference -> { Game.pending.count } do
+      Game.prepare earther_player: players(:vincent), explorer_player: players(:bruce), explorer_name: "Abelar"
+    end
+
+    game = Game.pending.last
+    assert_equal "Abelar", game.explorer.name # has been updated
+    assert_equal players(:vincent), game.earther_player
+    assert_equal players(:bruce), game.explorer_player
+  end
+
   test "#starts! raises if the game is already started" do
     assert_raises { games(:starting_game).starts! }
   end
 
   test "#starts creates the first round" do
-    game = Game.new earther: characters(:philip), explorer: characters(:abelar)
+    game = Game.new earther: @philip, explorer: @abelar
 
     assert_difference -> { game.rounds.count } do
       game.starts!
@@ -16,7 +47,7 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "#starts! sends a message to the Explorer" do
-    game = Game.new earther: characters(:philip), explorer: characters(:abelar)
+    game = Game.new earther: @philip, explorer: @abelar
 
     assert_enqueued_email_with GameMailer, :game_starts_for_explorer, params: { game: game } do
       game.starts!
@@ -24,7 +55,7 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "#starts! sends a message to the Earther" do
-    game = Game.new earther: characters(:philip), explorer: characters(:abelar)
+    game = Game.new earther: @philip, explorer: @abelar
 
     assert_enqueued_email_with GameMailer, :game_starts_for_earther, params: { game: game } do
       game.starts!
@@ -32,7 +63,7 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "a new round starts! when the Earther sends their message" do
-    game = Game.new explorer: characters(:abelar), earther: characters(:philip)
+    game = Game.new explorer: @abelar, earther: @philip
     game.starts!
 
     assert_difference -> { game.rounds.count } do
@@ -41,7 +72,7 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "the current round continues (no new round starts) when the Explorer sends their message" do
-    game = Game.create explorer: characters(:abelar), earther: characters(:philip)
+    game = Game.create explorer: @abelar, earther: @philip
     game.starts!
 
     assert_no_difference -> { game.rounds.count } do
