@@ -19,6 +19,15 @@ class Game < ApplicationRecord
   delegate :name, to: :earther, prefix: true
   delegate :name, to: :explorer, prefix: true
 
+  # SMELL: the hoops we have to go trough to have a new pending game with identified players but one
+  # unknown character name reveals an issue in the architecture.
+  def self.prepare(earther_player:, explorer_player:, earther_name: nil, explorer_name: nil)
+    create do |g|
+      Character.create!(game: g, role: "earther", player: earther_player, name: earther_name.presence || "[unknown]")
+      Character.create!(game: g, role: "explorer", player: explorer_player, name: explorer_name.presence || "[unknown]")
+    end
+  end
+
   def characters
     [earther, explorer]
   end
