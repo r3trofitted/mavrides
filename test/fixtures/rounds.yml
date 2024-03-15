@@ -37,7 +37,7 @@ ending_game_round_two:
   explorer_event: "A♥️"
   earther_hand: "K♠️,5♠️,8♣️,2♥️,J♦️"
   explorer_hand: "Q♥️,7♠️,9♣️,5♥️,5♦️"
-  
+
 ending_game_round_three:
   game: ending_game
   number: 3
@@ -45,7 +45,7 @@ ending_game_round_three:
   explorer_event: "5♦️"
   earther_hand: "Q♠️,5♠️,4♠️,8♣️,2♥️,J♦️"
   explorer_hand: "Q♥️,7♠️,9♣️,5♥️,4♦️,3♦️"
-  
+
 ending_game_round_four:
   game: ending_game
   number: 4
@@ -53,15 +53,15 @@ ending_game_round_four:
   explorer_event: "9♣️"
   earther_hand: "J♠️,5♠️,4♠️,2♠️,8♣️,2♥️,J♦️"
   explorer_hand: "Q♥️,7♠️,8♣️,7♣️,5♥️,4♦️,3♦️"
-  
+
 ending_game_round_five:
   game: ending_game
   number: 5
   earther_event: "J♠️"
   explorer_event: "Q♥️"
-  earther_hand: "10♠️,6,♠️5♠️,4♠️,2♠️8♣️,2♥️,J♦️"
+  earther_hand: "10♠️,6♠️,5♠️,4♠️,2♠️8♣️,2♥️,J♦️"
   explorer_hand: "9♥️,8♥️,7♠️,8♣️,7♣️,5♥️,4♦️,3♦️"
-  
+
 ending_game_round_six:
   game: ending_game
   number: 6
