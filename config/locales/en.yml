@@ -77,7 +77,7 @@ en:
       subject: A new game has started!
   messages_mailer:
     transmission:
-      events_intro: "%{elapsed_time} have passed since the departure of the fleet, and it's been %{lag} since you last wrote %{sender}."
+      events_intro: "It's been %{lag} since you last wrote %{sender}."
       ending_notice: >
         This event marks the end of the game. Send a final message to %{sender}; this
         message will not be distorted. Finish the message with [Connection Lost].

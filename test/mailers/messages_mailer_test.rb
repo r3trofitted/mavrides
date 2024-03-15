@@ -38,7 +38,7 @@ class MessagesMailerTest < ActionMailer::TestCase
     refute_match "The game has started. Reply to Philip with a message of congratulations", body
 
     assert_match <<~LIGHTSPEED_LAG.squish, body
-      21 days have passed since the departure of the fleet, and it's been 14 days since you last wrote Abelar Lindsay.
+      It's been 14 days since you last wrote Abelar Lindsay.
     LIGHTSPEED_LAG
 
     # the Earther's Terrestrial Event is the 1st from the spades table (cf. running_game_round_two fixtures)

@@ -32,11 +32,18 @@ class Transmission
   end
 
   def lag
+    case round
+    when 1 then rand(1..7).days
+    when 2 then 1.week
+    when 3 then 1.month
+    when 4 then rand(3..4).months
+    when 5 then rand(8..9).months
+    when 6 then 1.year
+    when 7 then 2.years
+    when 8 then 5.years
+    when 0 then 10.years
+    end
     2.weeks # SLIME
-  end
-
-  def elapsed_time
-    lag + 1.week # SLIME
   end
 
   def distortion_factors

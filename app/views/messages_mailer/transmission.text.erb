@@ -13,7 +13,6 @@
 
 <%= t ".events_intro",
       lag: time_ago_in_words(@transmission.lag.ago),
-      elapsed_time: time_ago_in_words(@transmission.elapsed_time.ago),
       sender: @transmission.sender_name
 %>
 
