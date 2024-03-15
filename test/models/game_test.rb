@@ -1,8 +1,10 @@
 require "test_helper"
 
+# TODO: split into several files?
 class GameTest < ActiveSupport::TestCase
   include ActionMailer::TestHelper
 
+  # SMELL: this setup is only relevant for some of the tests
   setup do
     @philip = characters(:philip_in_starting_game)
     @abelar = characters(:abelar_in_starting_game)

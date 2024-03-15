@@ -13,7 +13,7 @@ class GameMailer < ApplicationMailer
   #   en.game_mailer.game_starts_for_earther.subject
   #
   def game_starts_for_earther
-    mail to: @game.earther.player_email
+    mail to: @game.earther.player_email # TODO: use @game.earther_email instead
   end
 
   private
