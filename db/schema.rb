@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_10_26_162005) do
+ActiveRecord::Schema[8.1].define(version: 2024_10_26_195132) do
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
@@ -66,6 +66,17 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_26_162005) do
     t.index ["status"], name: "index_games_on_status"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "sender_id", null: false
+    t.string "subject"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_messages_on_game_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -78,4 +89,6 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_26_162005) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characters", "games"
   add_foreign_key "characters", "players"
+  add_foreign_key "messages", "games"
+  add_foreign_key "messages", "players", column: "sender_id"
 end
