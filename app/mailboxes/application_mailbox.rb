@@ -1,3 +1,3 @@
 class ApplicationMailbox < ActionMailbox::Base
-  # routing /something/i => :somewhere
+  routing %r|@mavrides.example\Z|i => :messages # FIXME: don't hardcode the domain
 end
