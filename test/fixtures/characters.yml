@@ -1,9 +1,11 @@
 abelar:
+  game: running_game
   player: bruce
   name: Abelar Lindsay
   role: explorer
 
 philip:
+  game: running_game
   player: vincent
   name: Philip Constantine
   role: earther
