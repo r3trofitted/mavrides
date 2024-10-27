@@ -85,10 +85,24 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_26_195132) do
     t.index ["email"], name: "index_players_on_email", unique: true
   end
 
+  create_table "rounds", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "number", null: false
+    t.string "earther_event", limit: 8
+    t.string "explorer_event", limit: 8
+    t.string "earther_hand"
+    t.string "explorer_hand"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id", "number"], name: "index_rounds_on_game_id_and_number", unique: true
+    t.index ["game_id"], name: "index_rounds_on_game_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characters", "games"
   add_foreign_key "characters", "players"
   add_foreign_key "messages", "games"
   add_foreign_key "messages", "players", column: "sender_id"
+  add_foreign_key "rounds", "games"
 end
