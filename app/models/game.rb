@@ -9,10 +9,22 @@ class Game < ApplicationRecord
     has_one :explorer_player, through: :explorer
   end
 
-  has_many :rounds, -> { order(number: :asc) }
-  has_many :messages
+  has_many :rounds, -> { order(number: :asc) } do
+    def current
+      last
+    end
+
+    def next!
+      create!(number: current&.number.to_i + 1)
+    end
+  end
+  has_many :messages, after_add: :update_rounds
 
   enum :status, %i(pending running ended), default: :pending
 
   validates_presence_of :earther, :explorer
+
+  def update_rounds(message)
+    rounds.next! if message.sender == explorer_player
+  end
 end
