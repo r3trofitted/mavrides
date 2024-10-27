@@ -9,6 +9,7 @@ class Game < ApplicationRecord
     has_one :explorer_player, through: :explorer
   end
 
+  has_many :rounds, -> { order(number: :asc) }
   has_many :messages
 
   enum :status, %i(pending running ended), default: :pending
